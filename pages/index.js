@@ -5,8 +5,14 @@ import Navbar from "../components/Navbar/Navbar";
 import { Fragment } from "react";
 import Baner from "../components/header/Baner";
 import Footer from "../components/footer/Footer";
+import Peler from "./api/hello";
 
-export default function Home() {
+export async function getStaticProps() {
+  const detail = await Peler()
+  console.log(detail);
+  return { props: { detail } };
+}
+export default function Home({detail}) {
   return (
     <Fragment>
       <div className="body">
@@ -17,7 +23,7 @@ export default function Home() {
             <link rel="icon" href="/vercel.svg" />
           </Head>
           <Navbar />
-          <Baner />
+          <Baner data={detail}/>
         </div>
         <Footer />
       </div>

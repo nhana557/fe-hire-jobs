@@ -19,7 +19,7 @@ const Profile = () => {
   const [image, setImage] = useState(null);
   const [detail, setDetail] = useState([]);
   const [loading, setLoading] = useState(false);
-  console.log("hallo", loading);
+  // console.log("hallo", loading);
   const [portfolio, setPortfolio] = useState([]);
   const [experience, setExperience] = useState([]);
   console.log(portfolio);

@@ -6,11 +6,18 @@ import { Fragment } from "react";
 import Baner from "../components/header/Baner";
 import Footer from "../components/footer/Footer";
 import axios from "axios";
+import Peler from "./api/hello";
+
+// export async function getStaticProps() {
+//   const result = await axios.get(`${process.env.API_BACKEND}review`);
+//   console.log(result.data);
+//   return { props: { detail: JSON.parse(JSON.stringify(result.data.data)) } };
+// }
 
 export async function getStaticProps() {
-  const result = await axios.get(`${process.env.API_BACKEND}review`);
-  console.log(result.data);
-  return { props: { detail: JSON.parse(JSON.stringify(result.data.data)) } };
+  const detail = await Peler()
+  console.log(detail);
+  return { props: { detail } };
 }
 
 export default function Home({ detail }) {
