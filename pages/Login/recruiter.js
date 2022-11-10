@@ -2,7 +2,7 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import styles from "../../styles/Login.module.css";
-import Logo from "../../assets/image/logo-White.svg";
+import Logo from "../../assets/image/logo-white.svg";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { loginRecruiter } from "../../config/Redux/Action/authAction";

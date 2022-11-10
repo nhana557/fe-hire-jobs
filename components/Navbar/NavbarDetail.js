@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Icon from '../../assets/image/icon.svg';
+import Icon from '../../assets/image/Icon.svg';
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from '../../styles/navbar.module.css'
