@@ -17,12 +17,12 @@ export async function getServerSideProps(context) {
   };
 }
 
-function profile ({ data }) {
+const profile = ({ data }) => {
   const [portfolio, setPortfolio] = useState([]);
   const [experience, setExperience] = useState([]);
   const Router = useRouter();
-  // console.log(experience);
   const id = Router.query.id;
+  console.log(id);
   console.log(portfolio);
   const fetchPort = async() =>{
     const result = await axios.get(`${process.env.API_BACKEND}portfolio/${id}`)
