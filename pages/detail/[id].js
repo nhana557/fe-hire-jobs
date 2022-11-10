@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Footer from "../../components/footer/Footer";
 import Head from "next/head";
 import Profile from "../../components/Profile";
@@ -6,6 +6,7 @@ import Navbar from "../../components/Navbar/NavbarDetail";
 import styles from "../../styles/Home.module.css";
 import axios from "axios";
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 /* SSR */
 export async function getServerSideProps(context) {
@@ -17,10 +18,10 @@ export async function getServerSideProps(context) {
   };
 }
 
-const [portfolio, setPortfolio] = useState([]);
-const [experience, setExperience] = useState([]);
-const Router = useRouter();
 const profile = ({ data }) => {
+  const [portfolio, setPortfolio] = useState([]);
+  const [experience, setExperience] = useState([]);
+  const Router = useRouter();
   const id = Router.query.id;
   console.log(id);
   console.log(portfolio);
