@@ -1,0 +1,132 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Nhana",
+      "email": "Nhana@gmail.com",
+      "password": "12345",
+      "job": "Web Developer",
+      "skill": [
+        "Javascript",
+        "boostrap",
+        "Reactjs"
+      ],
+      "address": "Zamharir, Level 15"
+    },
+    {
+      "id": 2,
+      "name": "Agung",
+      "email": "Agung@gmail.com",
+      "password": "12345",
+      "job": "Android Developer",
+      "skill": [
+        "Java",
+        "Kotlin",
+        "Reactjs"
+      ],
+      "address": "Jahim, Level 3"
+    },
+    {
+      "id": 3,
+      "name": "Sarimu",
+      "email": "Sarimu@gmail.com",
+      "password": "12345",
+      "job": "FullStack Web Developer",
+      "skill": [
+        "Javascript",
+        "boostrap",
+        "Posgresql"
+      ],
+      "address": "Jahanam, Level 7"
+    },
+    {
+      "id": 4,
+      "name": "Rizkiy",
+      "email": "Rizkiy@gmail.com",
+      "password": "12345",
+      "job": "FullStack Developer",
+      "skill": [
+        "Javascript",
+        "Reactjs",
+        "Reactjs"
+      ],
+      "address": "Huthamah, Level 12"
+    },
+    {
+      "id": 5,
+      "name": "Monkey D Luffy",
+      "email": "MonkeyDLuffy@gmail.com",
+      "password": "12345",
+      "job": "Enginer Developer",
+      "skill": [
+        "Javascript",
+        "boostrap",
+        "Reactjs"
+      ],
+      "address": "Zamharir, Level 15"
+    },
+    {
+      "id": 6,
+      "name": "Rorona Zoro",
+      "email": "Roronoa@gmail.com",
+      "password": "12345",
+      "job": "Cyber Security Developer",
+      "skill": [
+        "Java",
+        "Kotlin",
+        "Reactjs"
+      ],
+      "address": "Jahim, Level 3"
+    },
+    {
+      "id": 7,
+      "name": "Sanji",
+      "email": "sanji@gmail.com",
+      "password": "12345",
+      "job": "Backend Developer",
+      "skill": [
+        "Javascript",
+        "boostrap",
+        "Posgresql"
+      ],
+      "address": "Jahanam, Level 7"
+    },
+    {
+      "id": 8,
+      "name": "Agus D Roger",
+      "email": "Aguus@gmail.com",
+      "password": "12345",
+      "job": "Frontend Developer",
+      "skill": [
+        "Javascript",
+        "Reactjs",
+        "Reactjs"
+      ],
+      "address": "Huthamah, Level 12"
+    },
+    {
+      "name": "Taryana",
+      "email": "kitas4711@gmail.com",
+      "noHandphone": "08889457772",
+      "password": "12345",
+      "id": 9
+    }
+  ],
+  "profile": [
+    {
+      "id": 1,
+      "name": "Taryana",
+      "location": "Indramayu, Jawa Barat",
+      "job": "Web Developer",
+      "jobSkill": "Fullstack Web Developer",
+      "skill": [
+        "PHP",
+        "Javascrip",
+        "HTML",
+        "CSS",
+        "boostrap",
+        "Reactjs"
+      ]
+    }
+  ]
+}
