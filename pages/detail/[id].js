@@ -19,8 +19,8 @@ export async function getServerSideProps(context) {
 
 function profile ({ data }) {
   const Router = useRouter();
-  const [portfolio, setPortfolio] = React.useState([]);
-  const [experience, setExperience] = React.useState([]);
+  const [portfolio, setPortfolio] = useState([]);
+  const [experience, setExperience] = useState([]);
   console.log(experience);
   const id = Router.query.id;
   console.log(portfolio);
@@ -34,10 +34,10 @@ function profile ({ data }) {
     setExperience(result.data.data)
   };
 
-  React.useEffect(() =>{
+  useEffect(() =>{
     fetchPort();
     fetchExperience();
-  },[] )
+  },[fetchPort, fetchExperience])
 
   return (
     <div className="body">
