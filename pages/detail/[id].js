@@ -18,10 +18,10 @@ export async function getServerSideProps(context) {
 }
 
 function profile ({ data }) {
-  const Router = useRouter();
   const [portfolio, setPortfolio] = useState([]);
   const [experience, setExperience] = useState([]);
-  console.log(experience);
+  const Router = useRouter();
+  // console.log(experience);
   const id = Router.query.id;
   console.log(portfolio);
   const fetchPort = async() =>{
