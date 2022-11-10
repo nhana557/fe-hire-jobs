@@ -5,7 +5,7 @@ import Navbar from "../components/Navbar/Navbar";
 import { Fragment } from "react";
 import Baner from "../components/header/Baner";
 import Footer from "../components/footer/Footer";
-import Peler from "./api/hello";
+import Peler from "./api/index";
 
 export async function getStaticProps() {
   const detail = await Peler()

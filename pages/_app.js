@@ -6,10 +6,12 @@ import Script from "next/script";
 import { Provider } from "react-redux";
 import { store } from "../config/Redux/store";
 import { Fragment } from "react";
+import { SSRProvider } from "react-bootstrap";
 
 function MyApp({ Component, pageProps }) {
   return (
     <Fragment>
+      <SSRProvider>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link
@@ -36,6 +38,8 @@ function MyApp({ Component, pageProps }) {
         ERR
         <div className="inside">ERR</div>
       </div>
+
+      </SSRProvider>
     </Fragment>
   );
 }

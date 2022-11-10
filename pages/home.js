@@ -5,8 +5,7 @@ import Navbar from "../components/Navbar/NavbarAfterLogin";
 import { Fragment } from "react";
 import Baner from "../components/header/Baner";
 import Footer from "../components/footer/Footer";
-import axios from "axios";
-import Peler from "./api/hello";
+import Peler from "./api/index";
 
 // export async function getStaticProps() {
 //   const result = await axios.get(`${process.env.API_BACKEND}review`);
