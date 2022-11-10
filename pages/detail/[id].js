@@ -34,10 +34,10 @@ function profile ({ data }) {
     setExperience(result.data.data)
   };
 
-  useEffect(() =>{
+  useEffect(() => {
     fetchPort();
     fetchExperience();
-  },[fetchPort, fetchExperience])
+  },[])
 
   return (
     <div className="body">
