@@ -17,7 +17,7 @@ export async function getServerSideProps(context) {
   };
 }
 
-const profile = ({ data }) => {
+const profile = () => {
   const [portfolio, setPortfolio] = useState([]);
   const [experience, setExperience] = useState([]);
   const Router = useRouter();
