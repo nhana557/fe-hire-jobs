@@ -130,8 +130,8 @@ const Profile = () => {
                           }
                           className={`${styles.img_profile}`}
                           layout="responsive"
-                          width="1"
-                          height="1"
+                          width="100"
+                          height="100"
                           alt="Photo Profile"
                         />
                       )}
