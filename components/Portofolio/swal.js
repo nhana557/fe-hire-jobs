@@ -39,6 +39,7 @@ const Portofolio = ({ data }) => {
                         src={image}
                         width="10"
                         height={10}
+                        fill='cover'
                         layout="responsive"
                         alt="portofolio"
                       />

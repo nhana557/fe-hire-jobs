@@ -321,14 +321,15 @@ const Portofolio = ({ data }) => {
                 className={`${styles.card_custom} card text-center d-flex flex-column row p-0`}
               > */}
               <div className="row">
-                {item.image.map((image, index) => {
+                {item?.image?.map((image, index) => {
+                  console.log(image)
                   return (
                     <div className="col-5 m-auto mt-5" key={index}>
                       <Image
                         className="mb-2 "
                         src={image}
-                        width="10"
-                        height={10}
+                        width="1"
+                        height={1}
                         layout="responsive"
                         alt="portofolio"
                       />

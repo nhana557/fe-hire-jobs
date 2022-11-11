@@ -10,7 +10,7 @@ import PhotoProfile from "../../assets/iconpp.jpg";
 
 
 const Profile = ({ detail, portfolio, experience }) => {
-  console.log(detail)
+  console.log(`https://drive.google.com/uc?export=view&id=${detail?.image}`)
   return (
     <div>
       <Head>
@@ -27,7 +27,7 @@ const Profile = ({ detail, portfolio, experience }) => {
                       className={`${styles.img_profile}`}
                     >
                       <Image
-                        src={detail.image ? `https://drive.google.com/uc?export=view&id=${detail.image}` : PhotoProfile}
+                        src={detail?.image ? `https://drive.google.com/uc?export=view&id=${detail?.image}` : PhotoProfile}
                         layout="responsive"
                         width="1"
                         height="1"

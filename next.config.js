@@ -3,10 +3,10 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   env: {
-  API_BACKEND: process.env.API_BACKEND,
+    API_BACKEND: process.env.API_BACKEND,
   },
   images: {
-    domains: ['drive.google.com'],
+    domains: ['drive.google.com', 'localhost']
   },
 }
 

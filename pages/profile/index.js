@@ -129,6 +129,7 @@ const Profile = () => {
                               : PhotoProfile
                           }
                           className={`${styles.img_profile}`}
+                          priority={true}
                           layout="responsive"
                           width="100"
                           height="100"
