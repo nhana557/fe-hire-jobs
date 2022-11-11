@@ -299,7 +299,7 @@ const Profile = () => {
                         <Image
                           src={
                             detail.image
-                              ? `https://drive.google.com/uc?export=view&id=${detail.image}`
+                              ? `https://drive.google.com/thumbnail?id=${detail.image}&sz=s1080`
                               : ImageProfile
                           }
                           className={`${styles.img_profile}`}
