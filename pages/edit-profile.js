@@ -181,6 +181,12 @@ const Profile = () => {
         })
         .then((res) => {
           console.log(res);
+          if(res.data.message === 'error'){
+            Swal.fire({
+              icon: "error",
+              title: res.data.message,
+            });
+          }
           Swal.fire({
             icon: "success",
             title: res.data.message,
