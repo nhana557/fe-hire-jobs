@@ -10,10 +10,10 @@ const Pagination = ({increment, decrement, workerPerPage, totalWorker, paginate 
   }
   return (
     <nav aria-label="Page navigation example">
-      <ul class="pagination justify-content-center">
-        <li class="page-item mx-1">
+      <ul className="pagination justify-content-center">
+        <li className="page-item mx-1">
           <a
-            class="page-link rounded text-secondary"
+            className="page-link rounded text-secondary"
             href="#"
             aria-label="Previous"
             onClick={decrement}
@@ -28,9 +28,9 @@ const Pagination = ({increment, decrement, workerPerPage, totalWorker, paginate 
             </a>
           </li>
         ))}
-        <li class="page-item mx-1">
+        <li className="page-item mx-1">
           <a
-            class="page-link rounded text-secondary"
+            className="page-link rounded text-secondary"
             href="#"
             aria-label="Next"
             onClick={increment}

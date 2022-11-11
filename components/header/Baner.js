@@ -5,10 +5,10 @@ import banerBg from "../../assets/image/baner-bg1.svg";
 import baner2 from "../../assets/image/baner2.svg";
 import swal1 from "../../assets/iconpp.jpg";
 import baner3 from "../../assets/image/baner3.svg";
-import test from "../../assets/image/test.svg";
+// import test from "../../assets/image/test.svg";
 import styles from "../../styles/header.module.css";
-import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
-import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
+import { Navigation, Pagination } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
 import "swiper/css/navigation";

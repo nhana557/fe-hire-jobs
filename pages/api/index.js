@@ -2,7 +2,7 @@
 
 import axios from "axios";
 
-export default async function Peler(req, res) {
+export default async function Peler() {
   const result = await axios.get(`${process.env.API_BACKEND}review`);
 
   const detail = JSON.parse(JSON.stringify(result.data.data))

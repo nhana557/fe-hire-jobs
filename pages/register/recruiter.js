@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import Image from "next/image";
 import styles from "../../styles/RegisterWork.module.css";
 import Logo from "../../assets/image/logo-white.svg";
@@ -30,7 +30,7 @@ export default function RegisterRecuiterForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
-    dispatch(registerRecruiter(form, router, setLoading));
+    dispatch(registerRecruiter(form, router, Loading));
   };
 
   return (

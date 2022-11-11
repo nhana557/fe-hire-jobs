@@ -1,11 +1,11 @@
-import Head from "next/head";
-import React, { useEffect, Fragment, useState } from "react";
-import styles from "./porto.module.css";
+// import Head from "next/head";
+import React from "react";
+// import styles from "./porto.module.css";
 import Image from "next/image";
-import { useRouter } from "next/router";
-import Cookies from "js-cookie";
-import Swal from "sweetalert2";
-import axios from "axios";
+// import { useRouter } from "next/router";
+// import Cookies from "js-cookie";
+// import Swal from "sweetalert2";
+// import axios from "axios";
 import Link from "next/link";
 
 const Portofolio = ({ data }) => {

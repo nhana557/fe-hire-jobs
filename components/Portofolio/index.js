@@ -230,7 +230,7 @@ const Portofolio = ({ data }) => {
                                     />
                                     <label
                                       className="form-check-label"
-                                      for="flexRadioDefault1"
+                                      // for="flexRadioDefault1"
                                     >
                                       Aplikasi mobile
                                     </label>
@@ -247,7 +247,7 @@ const Portofolio = ({ data }) => {
                                     />
                                     <label
                                       className="form-check-label"
-                                      for="flexRadioDefault2"
+                                      // for="flexRadioDefault2"
                                     >
                                       Aplikasi web
                                     </label>

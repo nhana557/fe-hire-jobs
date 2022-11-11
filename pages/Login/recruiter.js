@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import Image from "next/image";
 import styles from "../../styles/Login.module.css";
 import Logo from "../../assets/image/logo-white.svg";
@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { loginRecruiter } from "../../config/Redux/Action/authAction";
 
-export default function LoginForm({}) {
+export default function LoginForm() {
   const dispatch = useDispatch();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
@@ -27,7 +27,7 @@ export default function LoginForm({}) {
   const handleLogin = (e) => {
     e.preventDefault();
     setLoading(true);
-    dispatch(loginRecruiter(form, router, setLoading));
+    dispatch(loginRecruiter(form, router, loading));
   };
 
   return (

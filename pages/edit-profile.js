@@ -1,20 +1,18 @@
 import Head from "next/head";
-import React, { useEffect, Fragment, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar/NavbarDetail";
 import Footer from "../components/footer/Footer";
 import Image from "next/image";
-import UploadImage from "../assets/image/upload_image.png";
+// import UploadImage from "../assets/image/upload_image.png";
 import styles from "../styles/Profile.module.css";
 import ImageProfile from "../assets/iconpp.jpg";
 import Cookies from "js-cookie";
 import axios from "axios";
-import { Form } from "react-bootstrap";
 import Swal from "sweetalert2";
 import Link from "next/link";
 const Profile = () => {
   const token = Cookies.get("token");
   const [detail, setDetail] = useState([]);
-  const [Skill, setSkill] = useState([]);
   const [loading, setLoading] = useState(false);
   const [Photo, setPhoto] = useState();
   var data = [];
@@ -237,6 +235,7 @@ const Profile = () => {
           fetch();
         })
         .catch((err) => {
+          console.log(err)
           Swal.fire({
             icon: "error",
             title: "error",
@@ -461,20 +460,6 @@ const Profile = () => {
                 <div className="card-body">
                   <h3>Skill</h3>
                   <hr />
-                  <div>
-                    <ul>
-                      {Skill
-                        ? Skill.skill?.map((res, index) => {
-                            return (
-                              // <div key={index}>
-                              <li key={index}>{res}</li>
-
-                              // </div>
-                            );
-                          })
-                        : ""}
-                    </ul>
-                  </div>
                   <form className="w-100 form-sign-up">
                     <div className="mb-2">
                       <input
@@ -516,6 +501,7 @@ const Profile = () => {
                               fetch();
                             })
                             .catch((err) => {
+                              console.log(err)
                               Swal.fire({
                                 icon: "error",
                                 title: "error",
@@ -673,7 +659,6 @@ const Profile = () => {
                           />
                           <label
                             className="form-check-label"
-                            for="flexRadioDefault1"
                           >
                             Aplikasi mobile
                           </label>
@@ -690,7 +675,6 @@ const Profile = () => {
                           />
                           <label
                             className="form-check-label"
-                            for="flexRadioDefault2"
                           >
                             Aplikasi web
                           </label>

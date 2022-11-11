@@ -1,5 +1,5 @@
 import Head from "next/head";
-import React, { useEffect, Fragment, useState } from "react";
+import React, { useEffect,  useState } from "react";
 import Portofolio from "../../components/Portofolio/index";
 import Pengalaman from "../../components/experiences/index";
 import styles from "../../styles/Profile.module.css";
@@ -15,7 +15,6 @@ import Swal from "sweetalert2";
 const Profile = () => {
   const id = Cookies.get("id");
   const token = Cookies.get("token");
-  const role = Cookies.get("role");
   const [image, setImage] = useState(null);
   const [detail, setDetail] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -79,11 +78,7 @@ const Profile = () => {
           icon: "success",
           title: res.data.message,
           confirmButtonText: "Oke",
-        }).then((res) => {
-          if (res.isConfirmed) {
-          
-          }
-        });
+        })
         fetch();
       });
     // }
@@ -199,8 +194,8 @@ const Profile = () => {
                   </Link>
 
                   <p className="fw-1 fw-bold mt-5">Skill</p>
-                  <div class="container text-center">
-                    <div class="row gy-2">
+                  <div className="container text-center">
+                    <div className="row gy-2">
                       {/* <div className={`border bg-warning ${styles.container_skill}`}> */}
                       {detail?.skill?.split(",").map((item, index) => (
                         <div className="col-4" key={index}>
@@ -217,16 +212,16 @@ const Profile = () => {
 
                   <ul className="d-flex flex-column mt-5">
                     <li>
-                      <i class="bi bi-envelope " /> Louistommo@gmail.com
+                      <i className="bi bi-envelope " /> Louistommo@gmail.com
                     </li>
                     <li>
-                      <i class="bi bi-instagram " /> @Louist91
+                      <i className="bi bi-instagram " /> @Louist91
                     </li>
                     <li>
-                      <i class="bi bi-github " /> @Louistommo
+                      <i className="bi bi-github " /> @Louistommo
                     </li>
                     <li>
-                      <i class="bi bi-linkedin " /> @Louistommo91
+                      <i className="bi bi-linkedin " /> @Louistommo91
                     </li>
                   </ul>
                 </div>
