@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import styles from "../../styles/RegisterWork.module.css";
 import Logo from "../../assets/image/logo-white.svg";
@@ -28,7 +28,7 @@ export default function RegisterWorkerForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
-    dispatch(registerWorker(from, router, setLoading));
+    dispatch(registerWorker(from, router, loading));
   };
 
   return (

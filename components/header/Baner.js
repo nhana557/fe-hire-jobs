@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import baner1 from "../../assets/image/baner1.svg";
-import banerBg from "../../assets/image/baner-bg1.svg";
+// import banerBg from "../../assets/image/baner-bg1.svg";
 import baner2 from "../../assets/image/baner2.svg";
 import swal1 from "../../assets/iconpp.jpg";
 import baner3 from "../../assets/image/baner3.svg";

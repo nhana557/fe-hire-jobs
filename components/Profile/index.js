@@ -1,6 +1,6 @@
 import Head from "next/head";
-import React, { useEffect, Fragment, useState } from "react";
-import Script from 'next/script';
+import React, { Fragment } from "react";
+// import Script from 'next/script';
 import Portofolio from "../../components/Portofolio/swal";
 import Pengalaman from "../experiences/constant";
 import styles from '../../styles/Profile.module.css'
@@ -47,8 +47,8 @@ const Profile = ({ detail, portfolio, experience }) => {
                   <button className={`btn ${styles.btn_custom}`}>Hire</button>
 
                   <p className="fw-1 fw-bold mt-5">Skill</p>
-                  <div class="container text-center">
-                    <div class="row gy-2">
+                  <div className="container text-center">
+                    <div className="row gy-2">
                         {/* <div className={`border bg-warning ${styles.container_skill}`}> */}
                         {
                           detail?.skill?.split(',').map((item, index) =>(
@@ -66,8 +66,8 @@ const Profile = ({ detail, portfolio, experience }) => {
                   </div>
 
                       <ul className="d-flex flex-column mt-5">
-                        {detail.instagram ? <li><i class="bi bi-instagram "/>{detail.instagram}</li> : ''}
-                        {detail.github ? <li><i class="bi bi-github "/>{detail.github}</li> : ''}
+                        {detail.instagram ? <li><i className="bi bi-instagram "/>{detail.instagram}</li> : ''}
+                        {detail.github ? <li><i className="bi bi-github "/>{detail.github}</li> : ''}
                         
                         {/* <li><i class="bi bi-envelope "/> Louistommo@gmail.com</li>
                         <li><i class="bi bi-github "/> @Louistommo</li>

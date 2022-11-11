@@ -1,5 +1,4 @@
-import Head from "next/head";
-import React, { useEffect, Fragment } from "react";
+import React, { Fragment } from "react";
 import Image from "next/image";
 import iconOffice from "../../assets/iconppOffice.svg";
 
