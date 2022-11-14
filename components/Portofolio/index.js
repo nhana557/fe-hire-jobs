@@ -13,8 +13,8 @@ const Portofolio = ({ data }) => {
   console.log(idPort)
   const [formPorto, setPortfolio] = useState({
     name_app: "" ,
-    repository: "" ,
-    type: "" ,
+    repository: "",
+    type: "",
   });
   const [imagePorto, setImagePorto] = useState();
   console.log(imagePorto)
@@ -32,6 +32,12 @@ const Portofolio = ({ data }) => {
     setImagePorto(file);
   };
   const handleSubmitPorto = async(e) => {
+    Swal.fire({
+      title: 'loading...',
+      allowEscapeKey: false,
+      allowOutsideClick: false,
+      showConfirmButton: false,
+    })
     e.preventDefault();
     const data = new FormData();
     data.append("name_app", formPorto.name_app);
@@ -129,6 +135,12 @@ const Portofolio = ({ data }) => {
                         className="btn btn-danger ms-lg-5 ms-3"
                         onClick={() => {
                           handleDelete(item.id);
+                          Swal.fire({
+                            title: 'loading...',
+                            allowEscapeKey: false,
+                            allowOutsideClick: false,
+                            showConfirmButton: false,
+                        })
                         }}
                       >
                         Delete
@@ -179,9 +191,7 @@ const Portofolio = ({ data }) => {
                           </div>
                           <div className="modal-body">
                             <form
-                              // onSubmit={()=>{
-                              //   handleSubmitPorto(item.id)
-                              // }}
+                              // onSubmit={handleSubmitPorto}
                               className="w-100 form-sign-up"
                             >
                               <div className="mb-2">
@@ -289,7 +299,10 @@ const Portofolio = ({ data }) => {
                             </button>
                             <button
                               type="submit"
-                              onClick={handleSubmitPorto}
+                              id="close"
+                              data-bs-dismiss="modal"
+                              onClick={handleSubmitPorto
+                              }
                               className="btn bg-primary text-white"
                             >
                               Update

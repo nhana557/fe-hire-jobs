@@ -31,7 +31,13 @@ const Experiences = ({ data }) => {
     const file = e.target.files[0];
     setPhoto(file)
   }
-  const handleSubmitUpdate = (e) =>{
+  const handleSubmitUpdate = async (e) =>{
+    Swal.fire({
+      title: 'loading...',
+      allowEscapeKey: false,
+      allowOutsideClick: false,
+      showConfirmButton: false,
+  })
     e.preventDefault();
     const formData = new FormData();
     // if (image) {
@@ -46,7 +52,7 @@ const Experiences = ({ data }) => {
         formExpe.job_description !== "" ||
         formExpe.month_year !== '' 
     ) {
-      axios
+    await axios
         .put(`${process.env.API_BACKEND}experience/${formExpe.id}`, formData, {
           headers: {
             Authorization: `Bearer ${token}`,

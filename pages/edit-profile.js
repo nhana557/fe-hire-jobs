@@ -614,7 +614,14 @@ const Profile = () => {
                     <hr className="mt-3" />
 
                     <div className="row justify-content-center">
-                      <button type="submit" className="btn btn-outline-warning">
+                      <button type="submit" className="btn btn-outline-warning" onClick={() =>{
+                        Swal.fire({
+                          title: 'loading...',
+                          allowEscapeKey: false,
+                          allowOutsideClick: false,
+                          showConfirmButton: false,
+                      })
+                      }}>
                         Tambah Pegalaman Kerja
                       </button>
                     </div>
@@ -720,9 +727,8 @@ const Profile = () => {
                     <div className="row justify-content-center">
                       <button type="submit" className="btn btn-outline-warning" onClick={() =>{
                         Swal.fire({
-                            title: 'Now loading',
+                            title: 'loading...',
                             allowEscapeKey: false,
-                            imageUrl: "images/ajaxloader.gif",
                             allowOutsideClick: false,
                             showConfirmButton: false,
                         })
