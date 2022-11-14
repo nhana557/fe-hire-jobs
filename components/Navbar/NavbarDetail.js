@@ -113,7 +113,7 @@ function Navbar() {
                                         onChange={fetch}
                                     /> :
                                     <Image
-                                        src={profile.image !== null ? `https://drive.google.com/uc?export=view&id=${profile.image}` : iconProfile}
+                                        src={profile.image !== null ? `https://drive.google.com/thumbnail?id=${profile.image}&sz=s1080` : iconProfile}
                                         alt=""
                                         width={35}
                                         height={35}

@@ -718,7 +718,15 @@ const Profile = () => {
                     </div>
                     <hr className="mt-3" />
                     <div className="row justify-content-center">
-                      <button type="submit" className="btn btn-outline-warning">
+                      <button type="submit" className="btn btn-outline-warning" onClick={() =>{
+                        Swal.fire({
+                            title: 'Now loading',
+                            allowEscapeKey: false,
+                            imageUrl: "images/ajaxloader.gif",
+                            allowOutsideClick: false,
+                            showConfirmButton: false,
+                        })
+                      }}>
                         Tambah Portofolio
                       </button>
                     </div>
