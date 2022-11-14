@@ -169,8 +169,8 @@ function Baner({ data }) {
                         <div className="card-img">
                           <Image
                             src={
-                              item.image !== null
-                                ? `https://drive.google.com/uc?export=view&id=${item.image}`
+                              item.image
+                                ? `https://drive.google.com/thumbnail?id=${item.image}&sz=s1080`
                                 : swal1
                             }
                             className="img7"
