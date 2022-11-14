@@ -118,7 +118,7 @@ const Experiences = ({ data }) => {
             <Fragment key={index}>
               <div className="col-2 pt-4">
                 <Image
-                  src={item.image ? `https://drive.google.com/uc?export=view&id=${item.image}` : iconOffice}
+                  src={item.image ? `https://drive.google.com/thumbnail?id=${item.image}&sz=s1080` : iconOffice}
                   className="bg-white"
                   layout="responsive"
                   width="150"
@@ -137,7 +137,7 @@ const Experiences = ({ data }) => {
                   className="edit-icon"
                   type="button"
                   data-bs-toggle="modal"
-                  data-bs-target="#updatePorto"
+                  data-bs-target="#updateExpe"
                 >
                   <button
                     className="btn btn-primary w-100 mb-4 "
@@ -151,7 +151,7 @@ const Experiences = ({ data }) => {
 
                 <div
                   className="modal fade"
-                  id="updatePorto"
+                  id="updateExpe"
                   tabIndex="-1"
                   aria-labelledby="editPhotoLabel"
                   aria-hidden="true"

@@ -15,9 +15,9 @@ const Portofolio = ({ data }) => {
     name_app: "" ,
     repository: "" ,
     type: "" ,
-    image: [],
   });
-  const [imagePorto, setImagePorto] = useState([]);
+  const [imagePorto, setImagePorto] = useState();
+  console.log(imagePorto)
   const handleChangePort = (e) => {
     e.preventDefault();
     setPortfolio({
@@ -31,18 +31,18 @@ const Portofolio = ({ data }) => {
     const file = e.target.files;
     setImagePorto(file);
   };
-  const handleSubmitPorto = (e) => {
+  const handleSubmitPorto = async(e) => {
     e.preventDefault();
     const data = new FormData();
     data.append("name_app", formPorto.name_app);
     data.append("repository", formPorto.repository);
     data.append("type", formPorto.type);
-    data.append("image", imagePorto[0]);
-    data.append("image", imagePorto[1]);
-    data.append("image", imagePorto[2]);
-    data.append("image", imagePorto[3]);
-    
-      axios
+    for(let img of imagePorto){
+      console.log(img)
+      data.append("image", img);
+    }
+    console.log(data)
+    await  axios
         .put(`${process.env.API_BACKEND}portfolio/${idPort}`, data, {
           headers: {
             Authorization: `Bearer ${token}`,
