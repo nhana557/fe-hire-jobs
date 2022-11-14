@@ -2,7 +2,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import Cookies from "js-cookie";
 
-export const registerWorker = (data, router, setLoading) => async(dispatch) =>{
+export const registerWorker = (data, router) => async(dispatch) =>{
     try {
         const result = await axios.post(`${process.env.API_BACKEND}authWorker/register`, data)
 
@@ -14,14 +14,14 @@ export const registerWorker = (data, router, setLoading) => async(dispatch) =>{
         })
         dispatch({type: 'USER_REGISTER_SUCCESS', payload: user});
         router.push('/Login/worker')
-        setLoading(false)
+        // setLoading(false)
     } catch (error) {
         Swal.fire({
             icon: 'error',
             title: error.response.data.message
         })
         console.log(error)
-        setLoading(false)
+        // setLoading(false)
     }
 }
 
@@ -46,7 +46,7 @@ export const registerRecruiter = (data, router, setLoading) => async(dispatch) =
         setLoading(false)
     }
 }
-export const loginWorker = (data, route, setLoading) => async(dispatch) =>{
+export const loginWorker = (data, route) => async(dispatch) =>{
     try {
         const result = await axios.post(`${process.env.API_BACKEND}authWorker/login`, data)
         const user = result.data
@@ -62,11 +62,11 @@ export const loginWorker = (data, route, setLoading) => async(dispatch) =>{
         })
         dispatch({type: "LOGIN_SUCCESS", payload: user})
         route.push('/home')
-        setLoading(false)
+        // setLoading(false)
     } catch (error) {
         console.log(error)
         Swal.fire(error.response.data.message,'', 'error')
-        setLoading(false)
+        // setLoading(false)
     }
 }
 

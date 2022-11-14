@@ -230,7 +230,7 @@ const Detail = ({ data }) => {
                       {/* <Link href={data.fullname}> */}
                       <div className={style.profile}>
                         <Image
-                          src={data.image ? `https://drive.google.com/uc?export=view&id=${data.image}` : Profile}
+                          src={data.image ? `https://drive.google.com/thumbnail?id=${data.image}&sz=s1080` : Profile}
                           width="100"
                           height="100"
                           alt="profile"
@@ -286,7 +286,7 @@ const Detail = ({ data }) => {
                         {/* <Link href={data.fullname}> */}
                         <div className={style.profile}>
                           <Image
-                            src={data.image ? `https://drive.google.com/uc?export=view&id=${data.image}` : Profile}
+                            src={data.image ? `https://drive.google.com/thumbnail?id=${data.image}&sz=s1080` : Profile}
                             width="100"
                             height="100"
                             alt="profile"

@@ -10,7 +10,7 @@ import { loginWorker } from "../../config/Redux/Action/authAction";
 export default function LoginForm() {
   const dispatch = useDispatch();
   const router = useRouter();
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -26,8 +26,8 @@ export default function LoginForm() {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    setLoading(true);
-    dispatch(loginWorker(form, router, loading));
+    // setLoading(true);
+    dispatch(loginWorker(form, router));
   };
 
   return (

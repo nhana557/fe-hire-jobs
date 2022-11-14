@@ -35,7 +35,7 @@ const Profile = () => {
     image: [],
   });
 
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState();
   const [imagePorto, setImagePorto] = useState([]);
 
   const handleChangePort = (e) => {
@@ -65,10 +65,12 @@ const Profile = () => {
     data.append("name_app", formPorto.name_app);
     data.append("repository", formPorto.repository);
     data.append("type", formPorto.type);
-    data.append("image", imagePorto[0]);
-    data.append("image", imagePorto[1]);
-    data.append("image", imagePorto[2]);
-    data.append("image", imagePorto[3]);
+    for(let img of imagePorto){
+      data.append("image", img);
+    }
+    // data.append("image", imagePorto[1]);
+    // data.append("image", imagePorto[2]);
+    // data.append("image", imagePorto[3]);
     if (
       formPorto.name_app &&
       formPorto.repository &&
