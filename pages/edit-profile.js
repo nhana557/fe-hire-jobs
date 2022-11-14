@@ -66,6 +66,7 @@ const Profile = () => {
     data.append("repository", formPorto.repository);
     data.append("type", formPorto.type);
     for(let img of imagePorto){
+      console.log(img)
       data.append("image", img);
     }
     // data.append("image", imagePorto[1]);
@@ -91,7 +92,12 @@ const Profile = () => {
             title: res.data.message,
           });
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          Swal.fire({
+          icon: "error",
+          title: "Error",
+        })
+      });
     } else {
       Swal.fire({
         icon: "error",
