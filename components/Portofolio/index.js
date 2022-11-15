@@ -98,6 +98,12 @@ const Portofolio = ({ data }) => {
       confirmButtonText: "Deleted",
     }).then((result) => {
       if (result.isConfirmed) {
+        Swal.fire({
+          title: 'loading...',
+          allowEscapeKey: false,
+          allowOutsideClick: false,
+          showConfirmButton: false,
+      })
         return(axios
           .delete(`${process.env.API_BACKEND}portfolio/${Id}`)
           .then((res) => {
@@ -135,12 +141,7 @@ const Portofolio = ({ data }) => {
                         className="btn btn-danger ms-lg-5 ms-3"
                         onClick={() => {
                           handleDelete(item.id);
-                          Swal.fire({
-                            title: 'loading...',
-                            allowEscapeKey: false,
-                            allowOutsideClick: false,
-                            showConfirmButton: false,
-                        })
+                          
                         }}
                       >
                         Delete
