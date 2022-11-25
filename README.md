@@ -1,14 +1,5 @@
-<html>
-<head>
-<style>
-div{
-    color: black;
-    background-color: powderblue;
-}
-</style>
-</head>
-<body>
-<div align="center" class='container'>
+
+<div align="center">
     <img src="./readme/Lg.svg" width="30%" />
 </div>
 <h3 align="center">Hire Jobs</h3>
@@ -17,8 +8,6 @@ div{
 ·
 <a href="https://github.com/nhana557/fe-hire-jobs/issues">Report Bug</a>
 </p>
-</body>
-</html>
 
 <!-- ABOUT THE PROJECT -->
 
