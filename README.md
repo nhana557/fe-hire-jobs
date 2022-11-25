@@ -1,3 +1,18 @@
+<div align="center">
+  <img src="./readme/Logo.svg" width="200px" height="200px" />
+</div>
+<h3 align="center">Hire Jobs</h3>
+<p align="center">
+  <a href="https://fe-hire-jobs.vercel.app/">View Demo</a>
+  ·
+  <a href="https://github.com/nhana557/fe-hire-jobs/issues">Report Bug</a>
+</p>
+
+<!-- ABOUT THE PROJECT -->
+## About The Project
+Hire Jobs adalah sebuah aplikasi berbasis website yang memudahkan orang untuk mendapatkan pekerjaan atau perusahaan mencari dan mendapatkan karyawan. Hire Jobs dikembangkan dengan satck PERN (PostgreSQL, Express js, Nextjs, Node js). Hire jobs merupakan sebuah project individu, disini saya membuat Backend dan Frontend.
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
@@ -12,20 +27,66 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+### Technology Used
+- [ReactJS](https://reactjs.org/)
+- [Redux](https://redux.js.org/)
+- [Bootstrap](https://getbootstrap.com/)
+- [Axios](https://github.com/axios/axios)
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+<!-- GETTING STARTED -->
+## Getting Started
 
-## Learn More
+### Installation
+- Clone This Repository
 
-To learn more about Next.js, take a look at the following resources:
+`git clone https://github.com/nhana557/fe-hire-jobs.git`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Install Module
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+`npm install`
+
+- Setting .env
+
+```bash
+REACT_APP_API_BACKEND=YOUR_API_URL
+```
+
+### Executing program
+
+- Run this project with `npm run start`.
+
+<!-- SCREENSHOT -->
+## Screenshot
+
+### Login
+<img src="./readme/HIre Login.jpg" />
+
+### Detail 
+<img src="./readme/search.jpg" />
+
+### Profile
+<img src="./readme/profile.jpg" />
+
+### Experience
+<img src="./readme/profile experience.jpg" />
+
+
+<!-- RELATED PROJECT -->
+## Related Project
+
+- [Hire jobs BE](https://github.com/nhana557/Hire-Jobs-BE)
+- [Hire jobs Demo](https://fe-hire-jobs.vercel.app/)
+
+<!-- CONTACT INFO -->
+## Contact Info
+
+Contributors names and contact info:
+
+1. Taryana
+
+- [Linkedin](https://www.linkedin.com/in/taryana10/)
+
 
 ## Deploy on Vercel
 

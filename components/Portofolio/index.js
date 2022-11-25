@@ -76,6 +76,7 @@ const Portofolio = ({ data }) => {
     }
     
   const getPortByID = (id_port) =>{
+    console.log(id_port)
     return(
       axios.get(`${process.env.API_BACKEND}portfolio/id/${id_port}`)
       .then(res =>{

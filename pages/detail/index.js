@@ -69,7 +69,7 @@ const Detail = ({ data }) => {
       fetch();
     }
   };
-
+  
   useEffect(() => {
     fetch();
   }, [ page]);

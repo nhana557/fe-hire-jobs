@@ -6,7 +6,7 @@ const nextConfig = {
     API_BACKEND: process.env.API_BACKEND,
   },
   images: {
-    domains: ['drive.google.com']
+    domains: ['drive.google.com', 'localhost']
   },
 }
 

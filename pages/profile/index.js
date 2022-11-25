@@ -268,32 +268,6 @@ const Profile = () => {
                         tabIndex="0"
                       >
                         <Portofolio data={portfolio} />
-                        {/* <div className="row row-cols-2 row-cols-lg-3 align-items-center g-5">
-                            {
-                              portfolio?.map((item, index) =>{
-                                console.log(item)
-                                return(
-                                  <div className="col categories" 
-                                  key={index}>
-                                    <div className={`${styles.card_custom} card text-center d-flex flex-column`}>
-                                            <Image
-                                              className={`${styles.img}`}
-                                              src={item.image[0]}
-                                              width='1'
-                                              height={1}
-                                              layout="responsive"
-                                              alt="portofolio"
-                                              />
-                                          <a href="/category/{category[0].id}">
-                                            <p className="font-category fw-1">{item.name_app}</p>
-                                          </a>
-                                      </div>
-                                    </div>
-                                )
-                              })
-                            }
-
-                            </div> */}
                       </div>
                       <div
                         className="tab-pane fade"
@@ -306,27 +280,6 @@ const Profile = () => {
                       </div>
                     </div>
                   </div>
-                  {/* <div className="tab-content mt-5" id="nav-tabContent">
-                      <div
-                        className="tab-pane fade show active"
-                        id="nav-home"
-                        role="tabpanel"
-                        aria-labelledby="nav-home-tab"
-                        tabIndex="0"
-                      >
-                        <Portofolio />
-                      </div>
-                      <div
-                        className="tab-pane fade"
-                        id="nav-profile"
-                        role="tabpanel"
-                        aria-labelledby="nav-profile-tab"
-                        tabIndex="0"
-                      >
-                        <Pengalaman />
-                      </div>
-                    </div> */}
-                  {/* </div> */}
                 </div>
               </div>
             </div>
