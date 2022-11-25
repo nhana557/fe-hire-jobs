@@ -1,9 +1,11 @@
+<head>
 <style>
     .conatainer{
         color: black;
         background-color: powderblue;
     }
 </style>
+</head>
 <div align="center" class='container'>
     <img src="./readme/Lg.svg" width="30%" />
 </div>
