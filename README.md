@@ -1,7 +1,7 @@
 <html>
 <head>
 <style>
-.container{
+div{
     color: black;
     background-color: powderblue;
 }
