@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./readme/Logo.svg" />
+  <img src="./readme/logo.svg" />
 </div>
 <h3 align="center">Hire Jobs</h3>
 <p align="center">
