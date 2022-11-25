@@ -1,4 +1,4 @@
-<div align="center" style="background : black">
+<div align="center" style="background-color: powderblue;">
   <img src="./readme/Lg.svg" width="30%"/>
 </div>
 <h3 align="center">Hire Jobs</h3>
