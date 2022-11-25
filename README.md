@@ -1,11 +1,11 @@
 <html>
 <head>
-    <style>
-        .conatainer{
-            color: black;
-            background-color: powderblue;
-        }
-    </style>
+<style>
+.conatainer{
+    color: black;
+    background-color: powderblue;
+}
+</style>
 </head>
 <body>
 <div align="center" class='container'>
