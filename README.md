@@ -1,11 +1,13 @@
+<html>
 <head>
-<style>
-    .conatainer{
-        color: black;
-        background-color: powderblue;
-    }
-</style>
+    <style>
+        .conatainer{
+            color: black;
+            background-color: powderblue;
+        }
+    </style>
 </head>
+<body>
 <div align="center" class='container'>
     <img src="./readme/Lg.svg" width="30%" />
 </div>
@@ -15,6 +17,8 @@
 ·
 <a href="https://github.com/nhana557/fe-hire-jobs/issues">Report Bug</a>
 </p>
+</body>
+</html>
 
 <!-- ABOUT THE PROJECT -->
 
