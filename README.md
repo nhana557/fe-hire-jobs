@@ -78,7 +78,7 @@ REACT_APP_API_BACKEND=YOUR_API_URL
 
 ### Experience
 
-<img src="./readme/profile experience.JPG" />
+<img src="./readme/profile experince.JPG" />
 
 <!-- RELATED PROJECT -->
 
