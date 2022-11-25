@@ -60,16 +60,16 @@ REACT_APP_API_BACKEND=YOUR_API_URL
 ## Screenshot
 
 ### Login
-<img src="./readme/HIre Login.jpg" />
+<img src="./readme/HIre Login.JPG" />
 
 ### Detail 
-<img src="./readme/search.jpg" />
+<img src="./readme/search.JPG" />
 
 ### Profile
-<img src="./readme/profile.jpg" />
+<img src="./readme/profile.JPG" />
 
 ### Experience
-<img src="./readme/profile experience.jpg" />
+<img src="./readme/profile experience.JPG" />
 
 
 <!-- RELATED PROJECT -->
