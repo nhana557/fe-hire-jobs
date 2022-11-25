@@ -1,5 +1,5 @@
-<div align="center" style="background-color: powderblue;">
-  <img src="./readme/Lg.svg" width="30%"/>
+<div align="center" >
+  <img src="./readme/Lg.svg" width="30%" style="background-color: powderblue;"/>
 </div>
 <h3 align="center">Hire Jobs</h3>
 <p align="center">
