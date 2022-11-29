@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import Footer from "../../components/footer/Footer";
+import Footer from "../../../components/footer/Footer";
 import Head from "next/head";
-import Profile from "../../components/Profile";
-import Navbar from "../../components/Navbar/NavbarDetail";
-import styles from "../../styles/Home.module.css";
+import Profile from "../../../components/Profile/recruiter";
+import Navbar from "../../../components/Navbar/NavbarDetail";
+import styles from "../../../styles/Home.module.css";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -11,11 +11,11 @@ import { useState } from "react";
 /* SSR */
 export async function getServerSideProps(context) {
   const id = context.params.id
-  console.log("ini id",id)
-  const res = await axios.get(`${process.env.API_BACKEND}worker/${id}`);
-  console.log(res.data)
+  console.log(id)
+  const res = await axios.get(`${process.env.API_BACKEND}recruiter/${id}`);
+  console.log('data recruiter',res.data);
   return {
-    props: { data: res.data.data.worker[0] },
+    props: { data: res.data.data[0] },
   };
 }
 
@@ -51,9 +51,8 @@ const ProfileDetails = ({ data }) => {
           <link rel="icon" href="/vercel.svg" />
         </Head>
         <Navbar />
-        <div className={`${styles.bg}`}></div>
         <div></div>
-        <Profile detail={data} portfolio={portfolio} experience={experience}></Profile>
+        <Profile detail={data}></Profile>
       </div>
       <Footer />
     </div>

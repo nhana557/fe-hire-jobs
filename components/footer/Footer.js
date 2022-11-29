@@ -5,7 +5,7 @@ import styles from '../../styles/Footer.module.css'
 
 function Footer() {
   return (
-    <footer className=' desktop-bottom '>
+    <footer className='desktop-bottom '>
         <div className={`${styles.container_footer}`}>
             <div className={`container-sm ${styles.content_footer}`}>
                 <Image src={Icon} alt='icon'/>

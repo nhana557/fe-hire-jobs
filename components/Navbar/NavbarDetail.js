@@ -16,7 +16,7 @@ import Cookies from 'js-cookie';
 function Navbar() {
     const router = useRouter()
     const [profile, setProfile] = useState([])
-    console.log(profile.image)
+    console.log(profile)
     const role = Cookies.get('role');
     console.log(role)
     const token = Cookies.get('token')
@@ -40,36 +40,32 @@ function Navbar() {
     }
 
     const fetch = async() =>{
-        axios.get(`${process.env.API_BACKEND}authWorker/profile`, {
-            headers:{
-                Authorization: `Bearer ${token}`
-            }
-        })
-        .then(res =>{
-            console.log(res)
-            setProfile(res.data.data[0])
-        })
+        if(role){
+            axios.get(`${process.env.API_BACKEND}authRecruiter/profile`, {
+                headers:{
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            .then(res =>{
+                console.log(res)
+                setProfile(res.data.data)
+            })
+        }else{
+            axios.get(`${process.env.API_BACKEND}authWorker/profile`, {
+                headers:{
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            .then(res =>{
+                console.log(res)
+                setProfile(res.data.data[0])
+            })
+        }
 
-    }
-    const fetchRecruiter = async() =>{
-        axios.get(`${process.env.API_BACKEND}authRecruiter/profile`, {
-            headers:{
-                Authorization: `Bearer ${token}`
-            }
-        })
-        .then(res =>{
-            console.log(res)
-            setProfile(res.data.data[0])
-        })
-
-    }
+    };
 
     useEffect(() =>{
-        if(role){
-            fetchRecruiter()
-        }else{
-            fetch()
-        }
+        fetch()
     },[])
     
   return (
@@ -105,7 +101,7 @@ function Navbar() {
                                     align="end"
                                     title={role === 'recruiter' ? 
                                     <Image
-                                        src={profile ? profile.image : iconProfile}
+                                        src={profile.image ? `https://drive.google.com/thumbnail?id=${profile.image}&sz=s1080` : `https://ui-avatars.com/api/?name=${profile.fullname}`}
                                         alt=""
                                         width={35}
                                         height={35}
@@ -113,7 +109,7 @@ function Navbar() {
                                         onChange={fetch}
                                     /> :
                                     <Image
-                                        src={profile.image !== null ? `https://drive.google.com/thumbnail?id=${profile.image}&sz=s1080` : iconProfile}
+                                        src={profile.image ? `https://drive.google.com/thumbnail?id=${profile.image}&sz=s1080` : `https://ui-avatars.com/api/?name=${profile.fullname}`}
                                         alt=""
                                         width={35}
                                         height={35}
@@ -135,7 +131,11 @@ function Navbar() {
                                     
                                     <Dropdown.Item
                                         onClick={() =>{
-                                            router.push('/profile')
+                                            if(role){
+                                                router.push('/profile/recruiter')
+                                            }else{
+                                                router.push('/profile')
+                                            }
                                         }}
                                         className={`${styles.icons_profile}`}
                                     >

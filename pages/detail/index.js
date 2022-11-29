@@ -5,12 +5,18 @@ import Footer from "../../components/footer/Footer";
 import Pagination from "../../components/pagination/index";
 import style from "../../styles/Detail.module.css";
 import Maps from "../../assets/image/detail/location.svg";
-import Profile from "../../assets/iconpp.jpg";
 import Image from "next/image";
 import axios from "axios";
 import Link from "next/link";
+import Cookies from "js-cookie";
 
-export async function getServerSideProps() {
+export async function getServerSideProps(ctx) {
+  if (ctx.req.cookies.role) {
+    const res = await axios.get(`${process.env.API_BACKEND}recruiter`);
+    return {
+      props: { data: res.data.data },
+    };
+  }
   const res = await axios.get(`${process.env.API_BACKEND}worker`);
   return {
     props: { data: res.data.data },
@@ -18,25 +24,44 @@ export async function getServerSideProps() {
 }
 
 const Detail = ({ data }) => {
-  console.log(data)
+  console.log(data);
+  const role = Cookies.get("role");
   const [search, setSearch] = useState("");
   const [dataSearch, setDataSearch] = useState([]);
   const [page, setPage] = useState(1);
   const [workerPerPage] = useState(5);
+  const [searchBar, setSearchBar] = useState();
 
-  // console.log(sortBy);
+  const changeSearch = (newSearch) => {
+    setSearchBar(newSearch);
+    fetch()
+  };
+  
+  console.log(searchBar);
   const handleSearch = (e) => {
     e.preventDefault();
     fetch();
   };
   console.log(search);
   const fetch = async () => {
-    const result = await axios.get(
-      `${process.env.API_BACKEND}worker?search=${search}`
-    );
-    setDataSearch(result.data.data);
+    if (searchBar === "recruiter") {
+      const result = await axios.get(
+        `${process.env.API_BACKEND}worker?search=${search}`
+      );
+      setDataSearch(result.data.data);
+    } else if (searchBar === "worker") {
+      const result = await axios.get(
+        `${process.env.API_BACKEND}recruiter?search=${search}`
+      );
+      setDataSearch(result.data.data);
+      console.log(result.data.data);
+    } else {
+      const result = await axios.get(
+        `${process.env.API_BACKEND}worker?search=${search}`
+      );
+      setDataSearch(result.data.data);
+    }
     // dataSearch.map(item =>{
-    console.log(result.data.data);
 
     // console.log(item)
     // })
@@ -69,10 +94,15 @@ const Detail = ({ data }) => {
       fetch();
     }
   };
-  
+
   useEffect(() => {
+    if (role) {
+      setSearchBar("recruiter");
+    } else {
+      setSearchBar("worker");
+    }
     fetch();
-  }, [ page]);
+  }, [page]);
   // })
   // console.log(sort);
   console.log(data);
@@ -81,6 +111,10 @@ const Detail = ({ data }) => {
   const currentPosts = dataSearch.slice(indexOfFirstPost, indexOfLastPost);
 
   const paginate = (pageNumber) => setPage(pageNumber);
+  const options = [
+    { value: "worker", label: "worker" },
+    { value: "recruiter", label: "recruiter" },
+  ];
   return (
     <Fragment>
       <div className="body">
@@ -91,8 +125,23 @@ const Detail = ({ data }) => {
         </Head>
         <Navbar />
         <div className={`${style.bg_top}`}>
-          <div className="d-flex">
+          <div className="d-flex justify-content-between">
             <p className="fw-bold text-white mt-3">Top Jobs</p>
+            <div className=" me-5 mt-3 w-25">
+              <select
+                className={`${style.select}`}
+                onChange={(event) => {
+                  fetch()
+                  changeSearch(event.target.value)
+                  fetch()
+                }}
+                value={searchBar}
+              >
+                <option value="worker" >Worker</option>
+                <option value="recruiter">Recruiter</option>
+              </select>
+              
+            </div>
           </div>
         </div>
         <div></div>
@@ -222,15 +271,19 @@ const Detail = ({ data }) => {
           }): "loading..."
 
           } */}
-              {search  ? (
+              {search ? (
                 currentPosts?.map((data, index) => {
-                    console.log(data.image)
+                  console.log(data.image);
                   return (
                     <div className={style.card} key={index}>
                       {/* <Link href={data.fullname}> */}
                       <div className={style.profile}>
                         <Image
-                          src={data.image ? `https://drive.google.com/thumbnail?id=${data.image}&sz=s1080` : Profile}
+                          src={
+                            data.image
+                              ? `https://drive.google.com/thumbnail?id=${data.image}&sz=s1080`
+                              : `https://ui-avatars.com/api/?name=${data.fullname}`
+                          }
                           width="100"
                           height="100"
                           alt="profile"
@@ -253,7 +306,12 @@ const Detail = ({ data }) => {
                         </p>
                         <p className="text-muted">
                           <Image src={Maps} alt="location" />
-                          <span className="ml-2"> {data.address === undefined ? "Unknown" : data.address}</span>
+                          <span className="ml-2">
+                            {" "}
+                            {data.address === undefined
+                              ? "Unknown"
+                              : data.address}
+                          </span>
                         </p>
                         <div className={style.skills}>
                           {data.skill?.split(",").map((data, index) => {
@@ -265,7 +323,13 @@ const Detail = ({ data }) => {
                           })}
                         </div>
                       </div>
-                      <Link href={`detail/${data.id}`}>
+                      <Link
+                        href={
+                          searchBar === "worker"
+                            ? `recruiter/${data.id}`
+                            : `detail/${data.id}`
+                        }
+                      >
                         <div className={`m-auto me-5 `}>
                           <button className={` ${style.btn_seeProfile}`}>
                             Lihat Profile
@@ -286,7 +350,11 @@ const Detail = ({ data }) => {
                         {/* <Link href={data.fullname}> */}
                         <div className={style.profile}>
                           <Image
-                            src={data.image ? `https://drive.google.com/thumbnail?id=${data.image}&sz=s1080` : Profile}
+                            src={
+                              data.image
+                                ? `https://drive.google.com/thumbnail?id=${data.image}&sz=s1080`
+                                : `https://ui-avatars.com/api/?name=${data.fullname}`
+                            }
                             width="100"
                             height="100"
                             alt="profile"
@@ -309,7 +377,9 @@ const Detail = ({ data }) => {
                           </p>
                           <p className="text-muted d-flex ">
                             <Image src={Maps} alt="location" />
-                            <span className="ml-2 align-self-center ms-2">{data.address == null ? "Unknown" : data.address}</span>
+                            <span className="ml-2 align-self-center ms-2">
+                              {data.address == null ? "Unknown" : data.address}
+                            </span>
                           </p>
                           <div className={style.skills}>
                             {data.skill?.split(",").map((data, index) => {
@@ -321,7 +391,13 @@ const Detail = ({ data }) => {
                             })}
                           </div>
                         </div>
-                        <Link href={`detail/${data.id}`}>
+                        <Link
+                          href={
+                            searchBar === "recruiter"
+                              ? `detail/recruiter/${data.id}`
+                              : `detail/${data.id}`
+                          }
+                        >
                           <div className={`m-auto me-5 `}>
                             <button className={` ${style.btn_seeProfile}`}>
                               Lihat Profile

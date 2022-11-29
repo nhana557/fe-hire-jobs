@@ -1,10 +1,8 @@
 import Head from "next/head";
 import React, { useEffect,  useState } from "react";
-import Portofolio from "../../components/Portofolio/index";
-import Pengalaman from "../../components/experiences/index";
 import styles from "../../styles/Profile.module.css";
 import Image from "next/image";
-import PhotoProfile from "../../assets/iconpp.jpg";
+import PhotoProfile from "../../assets/iconOffice.svg";
 import axios from "axios";
 import Link from "next/link";
 import Footer from "../../components/footer/Footer";
@@ -25,7 +23,7 @@ const Profile = () => {
   console.log(experience);
   console.log(detail);
   const fetch = async () => {
-    if(role){
+    try {
       const result = await axios.get(
         `${process.env.API_BACKEND}authRecruiter/profile`,
         {
@@ -34,23 +32,13 @@ const Profile = () => {
           },
         }
       );
-      setDetail(result.data.data);
-      setLoading(false);
-    }else{
-      const result = await axios.get(
-        `${process.env.API_BACKEND}authWorker/profile`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
       setDetail(result.data.data[0]);
       setLoading(false);
-    };
-
+      
+    } catch (err) {
+      
     }
-
+    }
   const fetchPort = async () => {
     const result = await axios.get(`${process.env.API_BACKEND}portfolio/${id}`);
 
@@ -62,22 +50,22 @@ const Profile = () => {
       `${process.env.API_BACKEND}experience/${id}`
     );
 
-    setExperience(result.data.data);
+    setExperience(result.data.data[0]);
   };
 
   const imageChangeHandler = (e) => {
     setImage(e.target.files[0]);
     console.log(e.target.files[0]);
   };
-  const onSubmitImage = () => {
+  const onSubmitImage = async() => {
     document.getElementById("close").click();
     setLoading(true)
     const formData = new FormData();
     // if (image) {
     formData.append("image", image);
-    axios
+    await axios
       .put(
-        `${process.env.API_BACKEND}authWorker/update-profile/img`,
+        `${process.env.API_BACKEND}authRecruiter/update-profile/img`,
         formData,
         {
           headers: {
@@ -87,12 +75,21 @@ const Profile = () => {
         }
       )
       .then((res) => {
-        console.log(res);
-        Swal.fire({
-          icon: "success",
-          title: res.data.message,
-          confirmButtonText: "Oke",
-        })
+        console.log(res.data.data.payload);
+        if(res.data.data.payload){
+          Swal.fire({
+            icon: "error",
+            title: "insert Photo",
+            confirmButtonText: "Oke",
+          })
+        }else{
+          Swal.fire({
+            icon: "success",
+            title: res.data.message,
+            confirmButtonText: "Oke",
+          })
+        }
+      
         fetch();
       });
     // }
@@ -111,12 +108,12 @@ const Profile = () => {
           <link rel="icon" href="/vercel.svg" />
         </Head>
         <Navbar />
-        <div className={`${styles.bg}`}></div>
-        <div className={`container ${styles.hight}`}>
+        <div className={`container mt-5`}>
           <div className="row mt-3 justify-content-center">
-            <div className="col-lg-4 col-sm-8">
+            <div className="col-lg col-sm-8">
+            <div className={`${styles.bg1}`}></div>
               <div className={`card mb-5 ${styles.border_none}`}>
-                <div className={`card-body `}>
+                <div className={`card-body ${styles.border_none1}`}>
                   <div className={`${styles.img_profile}`}>
                     <div
                       className="edit-icon"
@@ -139,9 +136,16 @@ const Profile = () => {
                           }
                           className={`${styles.img_profile}`}
                           priority={true}
+                          onChange={(e) =>{
+                            // console.log(e.target)
+                            // if(!detail.image){
+                            //   e.objectFit = "contain"
+                            // }
+                          }}
+                          // objectFit="contain"
                           layout="responsive"
-                          width="100"
-                          height="100"
+                          width="50"
+                          height="50"
                           alt="Photo Profile"
                         />
                       )}
@@ -196,52 +200,42 @@ const Profile = () => {
                       </div>
                     </div>
                   </div>
-                  <h3>{detail?.fullname}</h3>
-                  <h5>{detail?.jobs}</h5>
-                  <p>{detail?.address}</p>
-                  {/* <p>{detail?.job}</p> */}
-                  <p>{detail.description ? detail.description : ``}</p>
-                  <Link href="/edit-profile">
-                    <button className={`btn ${styles.btn_custom}`}>
-                      Edit Profile
-                    </button>
-                  </Link>
-
-                  <p className="fw-1 fw-bold mt-5">Skill</p>
-                  <div className="container text-center">
-                    <div className="row gy-2">
-                      {/* <div className={`border bg-warning ${styles.container_skill}`}> */}
-                      {detail?.skill?.split(",").map((item, index) => (
-                        <div className="col-4" key={index}>
-                          <div>
-                            <button className="btn bg-warning me-1 mt-2">
-                              {item}
-                            </button>
-                          </div>
-                        </div>
-                      ))}
-                      {/* </div> */}
-                    </div>
+                  <div className="text-center">
+                    <h3>{detail?.company}</h3>
+                    <h5>{detail?.company_field}</h5>
+                    <p>{detail?.address}</p>
+                    {/* <p>{detail?.job}</p> */}
+                    <p>{detail.company_description ? detail.company_description : ``}</p>
                   </div>
+                  <div className="container w-50">
+                    <Link href="/edit-recruiter">
+                      <button className={`btn ${styles.btn_custom}`}>
+                        Edit Profile
+                      </button>
+                    </Link>
+                    <div className=" d-flex w-100 mt-5 text-secondary text-decoration-none flex-column align-items-center fs-5">
+                      <div className="d-flex flex-column">
+                        <span className="mb-3">
+                          <i className="bi bi-envelope me-3" /> {detail.email}
+                        </span>
+                        <span className="mb-3">
+                          <i className="bi bi-instagram me-3" /> {detail.instagram}
+                        </span>
+                        <span className="mb-3">
+                          <i className="bi bi-github me-3" /> {detail.phonenumber}
+                        </span>
+                        <span className="mb-3">
+                          <i className="bi bi-linkedin me-3" /> {detail.linkedin}
+                        </span>
+                      </div>
 
-                  <ul className="d-flex flex-column mt-5">
-                    <li>
-                      <i className="bi bi-envelope " /> Louistommo@gmail.com
-                    </li>
-                    <li>
-                      <i className="bi bi-instagram " /> @Louist91
-                    </li>
-                    <li>
-                      <i className="bi bi-github " /> @Louistommo
-                    </li>
-                    <li>
-                      <i className="bi bi-linkedin " /> @Louistommo91
-                    </li>
-                  </ul>
+                    </div>
+
+                  </div>
                 </div>
               </div>
             </div>
-            <div className="col-lg-8 col-sm-8">
+            {/* <div className="col-lg-8 col-sm-8">
               <div className={`card mb-5 ${styles.border_none}`}>
                 <div className="card-body">
                   <div className="utama">
@@ -296,7 +290,7 @@ const Profile = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

@@ -27,7 +27,7 @@ const Profile = ({ detail, portfolio, experience }) => {
                       className={`${styles.img_profile}`}
                     >
                       <Image
-                        src={detail?.image ?`https://drive.google.com/thumbnail?id=${detail.image}&sz=s1080` : PhotoProfile}
+                        src={detail.image ? `https://drive.google.com/thumbnail?id=${detail.image}&sz=s1080` : `https://ui-avatars.com/api/?name=${detail.fullname}`}
                         layout="responsive"
                         width="1"
                         height="1"

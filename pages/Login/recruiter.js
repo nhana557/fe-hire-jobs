@@ -10,7 +10,6 @@ import { loginRecruiter } from "../../config/Redux/Action/authAction";
 export default function LoginForm() {
   const dispatch = useDispatch();
   const router = useRouter();
-  const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -26,8 +25,7 @@ export default function LoginForm() {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    setLoading(true);
-    dispatch(loginRecruiter(form, router, loading));
+    dispatch(loginRecruiter(form, router));
   };
 
   return (

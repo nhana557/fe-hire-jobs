@@ -4,6 +4,20 @@
     padding-right: 10%;
     height: 60px;
   }
+  .select{
+    margin-top: 4px;
+    background: transparent;
+    color: #f6f7f8;
+    width: 75%;
+    height: 35px;
+    border-radius: 10px;
+    border: none;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .select > option{
+    color: #000;
+  }
   .mainbody {
     width: 100%;
     background: #f6f7f8;

@@ -48,10 +48,15 @@ export const registerRecruiter = (data, router, setLoading) => async(dispatch) =
 }
 export const loginWorker = (data, route) => async(dispatch) =>{
     try {
-        const result = await axios.post(`${process.env.API_BACKEND}authWorker/login`, data)
+        console.log("tes");
+        const result = await axios.post(`${process.env.API_BACKEND}authWorker/login`, data, {
+            headers: {
+                'Access-Control-Allow-Origin': '*'
+            }
+        })
         const user = result.data
         // console.log('refresh',user.data.refreshToken)
-        // console.log('Token',user.data.token)
+        console.log('Token',user.data.token)
         Cookies.set('token', user.data.token)
         Cookies.set('refreshToken', user.data.refreshToken)
         Cookies.set('id', user.data.id)
@@ -65,15 +70,20 @@ export const loginWorker = (data, route) => async(dispatch) =>{
         // setLoading(false)
     } catch (error) {
         console.log(error)
-        Swal.fire(error.response.data.message,'', 'error')
+        // Swal.fire(error.response.data.message,'', 'error')
         // setLoading(false)
     }
 }
 
-export const loginRecruiter = (data, route, setLoading) => async(dispatch) =>{
+export const loginRecruiter = (data, route) => async(dispatch) =>{
     try {
-        const result = await axios.post(`${process.env.API_BACKEND}authRecruiter/login`, data)
+        const result = await axios.post(`${process.env.API_BACKEND}authRecruiter/login`, data, {
+            headers: {
+                'Access-Control-Allow-Origin': '*'
+            }
+        })
         const user = result.data
+        console.log(user)
         Cookies.set('token', user.data.token)
         Cookies.set('id', user.data.id)
         Cookies.set('refreshToken', user.data.refreshToken)
@@ -85,11 +95,10 @@ export const loginRecruiter = (data, route, setLoading) => async(dispatch) =>{
         })
         dispatch({type: "RECRUITER_LOGIN_SUCCESS", payload: user})
         route.push('/home')
-        setLoading(false)
     } catch (error) {
         console.log(error)
-        Swal.fire(error.response.data.message,'', 'error')
-        setLoading(false)
+        Swal.fire(error.message,'', 'error')
+        // setLoading(false)
         
     }
 }
