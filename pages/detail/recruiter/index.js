@@ -1,20 +1,19 @@
 import React, { Fragment, useEffect, useState } from "react";
 import Head from "next/head";
-import Navbar from "../../components/Navbar/NavbarDetail";
-import Footer from "../../components/footer/Footer";
-import Pagination from "../../components/pagination/index";
-import style from "../../styles/Detail.module.css";
-import Maps from "../../assets/image/detail/location.svg";
+import Navbar from "../../../components/Navbar/NavbarDetail";
+import Footer from "../../../components/footer/Footer";
+import Pagination from "../../../components/pagination/index";
+import style from "../../../styles/Detail.module.css";
+import Maps from "../../../assets/image/detail/location.svg";
 import Image from "next/image";
 import axios from "axios";
 import Link from "next/link";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
-import swicth from '../../styles/switch.module.css'
-
+import swicth from '../../../styles/switch.module.css'
 
 export async function getServerSideProps() {
-  const res = await axios.get(`${process.env.API_BACKEND}worker`);
+  const res = await axios.get(`${process.env.API_BACKEND}recruiter`);
   return {
     props: { data: res.data.data },
   };
@@ -22,13 +21,20 @@ export async function getServerSideProps() {
 
 const Detail = ({ data }) => {
   console.log(data);
-  const router = useRouter()
+  const router = useRouter();
   const role = Cookies.get("role");
   const [search, setSearch] = useState("");
   const [dataSearch, setDataSearch] = useState([]);
   const [page, setPage] = useState(1);
   const [workerPerPage] = useState(3);
-  
+  const [searchBar, setSearchBar] = useState(role ? role : "worker");
+
+  const changeSearch = (newSearch) => {
+    setSearchBar(newSearch);
+    fetch();
+  };
+
+  // console.log(searchBar);
   const handleSearch = (e) => {
     e.preventDefault();
     fetch();
@@ -36,21 +42,10 @@ const Detail = ({ data }) => {
   console.log(search);
   const fetch = async () => {
     const result = await axios.get(
-      `${process.env.API_BACKEND}worker?search=${search}`
+      `${process.env.API_BACKEND}recruiter?search=${search}`
     );
     setDataSearch(result.data.data);
     console.log(result.data.data);
-    // if (searchBar === "recruiter") {
-    //   const result = await axios.get(
-    //     `${process.env.API_BACKEND}worker?search=${search}`
-    //   );
-    //   setDataSearch(result.data.data);
-    // } else if (searchBar === "worker") {
-    // } 
-    // dataSearch.map(item =>{
-
-    // console.log(item)
-    // })
   };
   const fetchSort = async (sortBy, sort) => {
     const result = await axios.get(
@@ -112,14 +107,15 @@ const Detail = ({ data }) => {
           <div className="d-flex justify-content-between">
             <p className="fw-bold text-white mt-3">Top Jobs</p>
             <div className=" me-5 mt-3 w-25">
-            <div className={`${swicth.toggle_button_cover}`}>
+              <div className={`${swicth.toggle_button_cover}`}>
                 <div className={` mt-4`}>
                   <div className={`${swicth.button} ${swicth.r} ${swicth.button_5} `} >
                     <input type="checkbox" className={`${swicth.checkbox} `}
-                    defaultChecked={true}
+                    defaultChecked={false}
                     onClick={(e) =>{
-                      if(e.target.checked === false){
-                        router.push('/detail/recruiter')
+                      console.log(e.target.checked)
+                      if(e.target.checked == true){
+                        router.push('/detail')
                       }
                     }}/>
                     <div className={`${swicth.knobs}`}>
@@ -129,21 +125,20 @@ const Detail = ({ data }) => {
                   </div>
                 </div>
               </div>
-              {/* <select
+              <select
                 className={`${style.select}`}
                 onChange={(event) => {
-                  if(event.target.value === 'recruiter'){
-                    router.push('/detail/recruiter')
+                  if (event.target.value === "worker") {
+                    router.push("/detail");
                   }
-                  changeSearch(event.target.value)
-                  fetch()
+                  // changeSearch(event.target.value)
+                  fetch();
                 }}
                 value={searchBar}
               >
-                <option value="worker" >Recruiter</option>
+                <option value="worker">Recruiter</option>
                 <option value="recruiter">Worker</option>
-              </select> */}
-              
+              </select>
             </div>
           </div>
         </div>
@@ -304,10 +299,7 @@ const Detail = ({ data }) => {
                           {data.fullname}
                         </p>
                         {/* </Link> */}
-                        <p className="text-muted">{
-                          data.jobs === undefined ? "Unknown" : data.jobs
-                        }
-                        </p>
+                        <p className="text-muted">{data.company}</p>
                         <p className="text-muted">
                           <Image src={Maps} alt="location" />
                           <span className="ml-2">
@@ -328,7 +320,7 @@ const Detail = ({ data }) => {
                         </div>
                       </div>
                       <Link
-                        href={ `detail/${data.id}`
+                        href={`recruiter/${data.id}`
                         }
                       >
                         <div className={`m-auto me-5 `}>
@@ -374,9 +366,7 @@ const Detail = ({ data }) => {
                           </p>
                           {/* </Link> */}
                           <p className="text-muted">
-                          {
-                          data.jobs ? data.jobs : 'Unknown'
-                        }
+                            {data.company ? data.company : "Unknown"}
                           </p>
                           <p className="text-muted d-flex ">
                             <Image src={Maps} alt="location" />
@@ -395,7 +385,7 @@ const Detail = ({ data }) => {
                           </div>
                         </div>
                         <Link
-                          href={ `detail/${data.id}`
+                          href={`/detail/recruiter/${data.id}`
                           }
                         >
                           <div className={`m-auto me-5 `}>

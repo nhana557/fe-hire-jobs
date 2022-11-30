@@ -5,7 +5,6 @@ import Profile from "../../../components/Profile/recruiter";
 import Navbar from "../../../components/Navbar/NavbarDetail";
 import styles from "../../../styles/Home.module.css";
 import axios from "axios";
-
 /* SSR */
 export async function getServerSideProps(context) {
   const id = context.params.id
