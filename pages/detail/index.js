@@ -30,7 +30,7 @@ const Detail = ({ data }) => {
   const [dataSearch, setDataSearch] = useState([]);
   const [page, setPage] = useState(1);
   const [workerPerPage] = useState(5);
-  const [searchBar, setSearchBar] = useState();
+  const [searchBar, setSearchBar] = useState(role? role : 'worker');
 
   const changeSearch = (newSearch) => {
     setSearchBar(newSearch);
@@ -44,18 +44,18 @@ const Detail = ({ data }) => {
   };
   console.log(search);
   const fetch = async () => {
-    if (searchBar === "recruiter") {
-      const result = await axios.get(
-        `${process.env.API_BACKEND}worker?search=${search}`
-      );
-      setDataSearch(result.data.data);
-    } else if (searchBar === "worker") {
-      const result = await axios.get(
-        `${process.env.API_BACKEND}recruiter?search=${search}`
-      );
-      setDataSearch(result.data.data);
-      console.log(result.data.data);
-    } 
+    const result = await axios.get(
+      `${process.env.API_BACKEND}${searchBar}?search=${search}`
+    );
+    setDataSearch(result.data.data);
+    console.log(result.data.data);
+    // if (searchBar === "recruiter") {
+    //   const result = await axios.get(
+    //     `${process.env.API_BACKEND}worker?search=${search}`
+    //   );
+    //   setDataSearch(result.data.data);
+    // } else if (searchBar === "worker") {
+    // } 
     // dataSearch.map(item =>{
 
     // console.log(item)
@@ -93,14 +93,7 @@ const Detail = ({ data }) => {
   useEffect(() => {
     if (role) {
       setSearchBar("recruiter");
-      const result =  axios.get(
-        `${process.env.API_BACKEND}recruiter?search=${search}`
-      );
-      result.then(res =>{
-        setDataSearch(res.data.data);
-        console.log(dataSearch);
-      }
-      )
+      fetch()
     } else {
       setSearchBar("worker");
       fetch();
@@ -131,14 +124,13 @@ const Detail = ({ data }) => {
               <select
                 className={`${style.select}`}
                 onChange={(event) => {
-                  fetch()
                   changeSearch(event.target.value)
                   fetch()
                 }}
                 value={searchBar}
               >
-                <option value="worker" >Worker</option>
-                <option value="recruiter">Recruiter</option>
+                <option value="worker" >Recruiter</option>
+                <option value="recruiter">Worker</option>
               </select>
               
             </div>
@@ -301,8 +293,12 @@ const Detail = ({ data }) => {
                           {data.fullname}
                         </p>
                         {/* </Link> */}
-                        <p className="text-muted">
-                          {data.jobs === undefined ? "Unknown" : data.jobs}
+                        <p className="text-muted">{
+                          searchBar === "worker" ? 
+                          data.company ? data.company : 'Unknown'
+                          :
+                          data.jobs === undefined ? "Unknown" : data.jobs
+                        }
                         </p>
                         <p className="text-muted">
                           <Image src={Maps} alt="location" />
@@ -373,7 +369,12 @@ const Detail = ({ data }) => {
                           </p>
                           {/* </Link> */}
                           <p className="text-muted">
-                            {data.jobs === undefined ? "Unknown" : data.jobs}
+                          {
+                          searchBar === "worker" ? 
+                          data.company ? data.company : 'Unknown'
+                          :
+                          data.jobs === undefined ? "Unknown" : data.jobs
+                        }
                           </p>
                           <p className="text-muted d-flex ">
                             <Image src={Maps} alt="location" />
