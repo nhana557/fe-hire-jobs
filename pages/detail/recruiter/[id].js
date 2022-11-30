@@ -1,4 +1,4 @@
-import React, from "react";
+import React from "react";
 import Footer from "../../../components/footer/Footer";
 import Head from "next/head";
 import Profile from "../../../components/Profile/recruiter";
