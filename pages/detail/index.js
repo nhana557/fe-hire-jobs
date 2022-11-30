@@ -23,7 +23,6 @@ export async function getServerSideProps() {
 const Detail = ({ data }) => {
   console.log(data);
   const router = useRouter()
-  const role = Cookies.get("role");
   const [search, setSearch] = useState("");
   const [dataSearch, setDataSearch] = useState([]);
   const [page, setPage] = useState(1);
@@ -40,28 +39,13 @@ const Detail = ({ data }) => {
     );
     setDataSearch(result.data.data);
     console.log(result.data.data);
-    // if (searchBar === "recruiter") {
-    //   const result = await axios.get(
-    //     `${process.env.API_BACKEND}worker?search=${search}`
-    //   );
-    //   setDataSearch(result.data.data);
-    // } else if (searchBar === "worker") {
-    // } 
-    // dataSearch.map(item =>{
-
-    // console.log(item)
-    // })
   };
   const fetchSort = async (sortBy, sort) => {
     const result = await axios.get(
       `${process.env.API_BACKEND}worker?sorby=${sortBy}&sort=${sort}`
     );
     setDataSearch(result.data.data);
-    // dataSearch.map(item =>{
     console.log(result.data.data);
-
-    // console.log(item)
-    // })
   };
   // console.log(page + 1)
   const increment = () => {
@@ -82,13 +66,6 @@ const Detail = ({ data }) => {
   };
 
   useEffect(() => {
-    // if (role) {
-    //   setSearchBar("recruiter");
-    //   fetch()
-    // } else {
-    //   setSearchBar("worker");
-    //   fetch();
-    // }
     fetch();
   }, [page]);
   // })
@@ -225,55 +202,6 @@ const Detail = ({ data }) => {
               <button onClick={handleSearch}>Search</button>
             </div>
             <div className={style.main}>
-              {/* {dataSearch.length > 0 ? 
-          dataSearch.map(item =>{
-            console.log(item.skill)
-            if(item.skill !== undefined){
-              return(
-                <div className={style.card} key={item.id}>
-                <Link href={item.name}>
-                    <div className={style.profile}>
-                    <Image
-                    src={Profile}
-                    alt="profile"
-                    className={style.profile_img}
-                    />
-                </div>
-                </Link>
-              
-              <div className={style.profiledetail}>
-                <Link href={item.name}>
-                <p
-                  className="font-weight-bold "
-                  style={{ fontSize: "20px", cursor: "pointer" }}
-                >
-                  {item.name}
-                </p>
-                
-                </Link>
-                <p className="text-muted">{item.job}</p>
-                <p className="text-muted">
-                  <Image src={Maps} alt="location" />
-                  <span className="ml-2">{item.address}</span>
-                </p>
-                <div className={style.skills} >
-                {item?.skill?.length > 0 ?
-                item?.skill?.map((item, index) =>{
-                return(
-                      <div className={style.skill} key={index}>{item}</div>
-                      )
-                    }): "loadding"
-                    
-                }
-                </div>
-              </div>
-            </div>
-  
-              )
-            }
-          }): "loading..."
-
-          } */}
               {search ? (
                 currentPosts?.map((data, index) => {
                   console.log(data.image);
