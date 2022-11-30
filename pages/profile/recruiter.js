@@ -13,7 +13,6 @@ import Swal from "sweetalert2";
 const Profile = () => {
   const id = Cookies.get("id");
   const token = Cookies.get("token");
-  const role = Cookies.get("role");
   const [image, setImage] = useState(null);
   const [detail, setDetail] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -36,7 +35,7 @@ const Profile = () => {
       setLoading(false);
       
     } catch (err) {
-      
+      console.log(err)
     }
     }
   const fetchPort = async () => {
@@ -136,13 +135,6 @@ const Profile = () => {
                           }
                           className={`${styles.img_profile}`}
                           priority={true}
-                          onChange={(e) =>{
-                            // console.log(e.target)
-                            // if(!detail.image){
-                            //   e.objectFit = "contain"
-                            // }
-                          }}
-                          // objectFit="contain"
                           layout="responsive"
                           width="50"
                           height="50"

@@ -55,12 +55,7 @@ const Detail = ({ data }) => {
       );
       setDataSearch(result.data.data);
       console.log(result.data.data);
-    } else {
-      const result = await axios.get(
-        `${process.env.API_BACKEND}worker?search=${search}`
-      );
-      setDataSearch(result.data.data);
-    }
+    } 
     // dataSearch.map(item =>{
 
     // console.log(item)
@@ -98,8 +93,17 @@ const Detail = ({ data }) => {
   useEffect(() => {
     if (role) {
       setSearchBar("recruiter");
+      const result =  axios.get(
+        `${process.env.API_BACKEND}recruiter?search=${search}`
+      );
+      result.then(res =>{
+        setDataSearch(res.data.data);
+        console.log(dataSearch);
+      }
+      )
     } else {
       setSearchBar("worker");
+      fetch();
     }
     fetch();
   }, [page]);
@@ -111,10 +115,6 @@ const Detail = ({ data }) => {
   const currentPosts = dataSearch.slice(indexOfFirstPost, indexOfLastPost);
 
   const paginate = (pageNumber) => setPage(pageNumber);
-  const options = [
-    { value: "worker", label: "worker" },
-    { value: "recruiter", label: "recruiter" },
-  ];
   return (
     <Fragment>
       <div className="body">

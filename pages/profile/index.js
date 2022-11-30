@@ -47,7 +47,7 @@ const Profile = () => {
       );
       setDetail(result.data.data[0]);
       setLoading(false);
-    };
+    }
 
     }
 

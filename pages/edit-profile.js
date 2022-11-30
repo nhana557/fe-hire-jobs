@@ -12,7 +12,6 @@ import Swal from "sweetalert2";
 import Link from "next/link";
 const Profile = () => {
   const token = Cookies.get("token");
-  const role = Cookies.get("role");
   const [detail, setDetail] = useState([]);
   const [loading, setLoading] = useState(false);
   const [Photo, setPhoto] = useState();
@@ -266,17 +265,6 @@ const Profile = () => {
   };
   // console.log(detail)
   const fetch = async () => {
-    if(role){
-      const result = await axios.get(
-        `${process.env.API_BACKEND}authRescruiter/profile`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      setDetail(result.data.data[0]);
-    }else{
       const result = await axios.get(
         `${process.env.API_BACKEND}authWorker/profile`,
         {
@@ -286,8 +274,6 @@ const Profile = () => {
         }
       );
       setDetail(result.data.data[0]);
-    };
-
     }
 
   useEffect(() => {

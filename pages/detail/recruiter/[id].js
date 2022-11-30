@@ -20,27 +20,6 @@ export async function getServerSideProps(context) {
 }
 
 const ProfileDetails = ({ data }) => {
-  const [portfolio, setPortfolio] = useState([]);
-  const [experience, setExperience] = useState([]);
-  const Router = useRouter();
-  const id = Router.query.id;
-  console.log(id);
-  console.log(portfolio);
-  const fetchPort = async() =>{
-    const result = await axios.get(`${process.env.API_BACKEND}portfolio/${id}`)
-    setPortfolio(result.data.data);
-  };
-
-  const fetchExperience = async() =>{
-    const result = await axios.get(`${process.env.API_BACKEND}experience/${id}`);
-    setExperience(result.data.data)
-  };
-
-  useEffect(() => {
-    fetchPort();
-    fetchExperience();
-  },[])
-
   return (
     <div className="body">
 

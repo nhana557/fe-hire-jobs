@@ -3,7 +3,6 @@ import Icon from '../../assets/image/Icon.svg';
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from '../../styles/navbar.module.css'
-import iconProfile from '../../assets/iconpp.jpg'
 import iconMail from '../../assets/image/navbar/icon-mail.svg'
 import iconBell from '../../assets/image/navbar/icon-bell.svg'
 import { Dropdown, DropdownButton } from 'react-bootstrap';

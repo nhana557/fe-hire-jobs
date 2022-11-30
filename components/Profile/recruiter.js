@@ -1,8 +1,4 @@
-import Head from "next/head";
-import React, { Fragment, useState } from "react";
-// import Script from 'next/script';
-import Portofolio from "../../components/Portofolio/swal";
-import Pengalaman from "../experiences/constant";
+import React, { useState } from "react";
 import styles from '../../styles/Profile.module.css'
 import Image from "next/image";
 import PhotoProfile from "../../assets/iconOffice.svg";
@@ -12,7 +8,6 @@ import Link from "next/link";
 
 const Profile = ({ detail }) => {
     console.log(detail.image)
-  const [loading, setLoading] = useState(false);
 
   console.log(`https://drive.google.com/uc?export=view&id=${detail?.image}`)
   return (
@@ -24,19 +19,7 @@ const Profile = ({ detail }) => {
             <div className={`card mb-5 ${styles.border_none}`}>
               <div className={`card-body ${styles.border_none1}`}>
                 <div className={`${styles.img_profile}`}>
-                  <div
-                    className="edit-icon"
-                    type="button"
-                    data-bs-toggle="modal"
-                    data-bs-target="#editPhoto"
-                  >
-                   {loading ? (
-                      <div className="p-3 ms-5">
-                        <div className="spinner-grow" role="status">
-                          <span className="visually-hidden">Loading...</span>
-                        </div>
-                      </div>
-                    ) : (
+                 
                       <Image
                         src={
                           detail.image
@@ -57,8 +40,6 @@ const Profile = ({ detail }) => {
                         height="50"
                         alt="Photo Profile"
                       />
-                    )}
-                  </div>
                 </div>
                 <div className="text-center">
                   <h3>{detail?.company}</h3>
