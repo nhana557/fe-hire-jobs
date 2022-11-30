@@ -5,7 +5,6 @@ import Portofolio from "../../components/Portofolio/swal";
 import Pengalaman from "../experiences/constant";
 import styles from '../../styles/Profile.module.css'
 import Image from "next/image";
-import PhotoProfile from "../../assets/iconpp.jpg";
 
 
 

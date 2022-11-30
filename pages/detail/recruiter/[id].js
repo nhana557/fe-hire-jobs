@@ -1,12 +1,10 @@
-import React, { useEffect } from "react";
+import React, from "react";
 import Footer from "../../../components/footer/Footer";
 import Head from "next/head";
 import Profile from "../../../components/Profile/recruiter";
 import Navbar from "../../../components/Navbar/NavbarDetail";
 import styles from "../../../styles/Home.module.css";
 import axios from "axios";
-import { useRouter } from "next/router";
-import { useState } from "react";
 
 /* SSR */
 export async function getServerSideProps(context) {

@@ -12,7 +12,6 @@ import Swal from "sweetalert2";
 import Link from "next/link";
 const Profile = () => {
   const token = Cookies.get("token");
-  const role = Cookies.get("role");
   const [detail, setDetail] = useState([]);
   console.log(detail)
   const [loading, setLoading] = useState(false);

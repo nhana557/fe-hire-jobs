@@ -1,10 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from '../../styles/Profile.module.css'
 import Image from "next/image";
 import PhotoProfile from "../../assets/iconOffice.svg";
 import Link from "next/link";
-
-
 
 const Profile = ({ detail }) => {
     console.log(detail.image)
@@ -28,13 +26,6 @@ const Profile = ({ detail }) => {
                         }
                         className={`${styles.img_profile}`}
                         priority={true}
-                        onChange={(e) =>{
-                          // console.log(e.target)
-                          // if(!detail.image){
-                          //   e.objectFit = "contain"
-                          // }
-                        }}
-                        // objectFit="contain"
                         layout="responsive"
                         width="50"
                         height="50"
