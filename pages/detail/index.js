@@ -30,7 +30,7 @@ const Detail = ({ data }) => {
   const [dataSearch, setDataSearch] = useState([]);
   const [page, setPage] = useState(1);
   const [workerPerPage] = useState(5);
-  const [searchBar, setSearchBar] = useState(role? role : 'worker');
+  const [searchBar, setSearchBar] = useState(role ? role : 'worker');
 
   const changeSearch = (newSearch) => {
     setSearchBar(newSearch);
@@ -91,13 +91,13 @@ const Detail = ({ data }) => {
   };
 
   useEffect(() => {
-    if (role) {
-      setSearchBar("recruiter");
-      fetch()
-    } else {
-      setSearchBar("worker");
-      fetch();
-    }
+    // if (role) {
+    //   setSearchBar("recruiter");
+    //   fetch()
+    // } else {
+    //   setSearchBar("worker");
+    //   fetch();
+    // }
     fetch();
   }, [page]);
   // })
