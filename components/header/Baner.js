@@ -1,19 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import baner1 from "../../assets/image/baner1.svg";
-// import banerBg from "../../assets/image/baner-bg1.svg";
 import baner2 from "../../assets/image/baner2.svg";
-import swal1 from "../../assets/iconpp.jpg";
 import baner3 from "../../assets/image/baner3.svg";
-// import test from "../../assets/image/test.svg";
 import styles from "../../styles/header.module.css";
-import { Navigation, Pagination } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
-import "swiper/css/navigation";
-import "swiper/css";
-import "swiper/css/pagination";
+import LandingCarousel from "./carausel";
 import Link from "next/link";
 import axios from "axios";
 
@@ -128,143 +119,8 @@ function Baner({ data }) {
         </div>
       </div>
 
-      <div className="container-sm">
-        <h1 className="text-center">Their opinion about peworld</h1>
-        <Swiper
-          className="container container_swiper"
-          modules={[Pagination, Navigation]}
-          slidesPerView={3}
-          spaceBetween={0}
-          // pagination= {{clickable: true}}
-          navigation={true}
-          breakpoints={{
-            //when window width is >= 440
-            300: {
-              slidesPerView: 1,
-            },
-            400: {
-              slidesPerView: 1,
-            },
-            440: {
-              slidesPerView: 1,
-            },
-            576: {
-              slidesPerView: 2,
-            },
-            640: {
-              slidesPerView: 2,
-            },
-            768: {
-              slidesPerView: 3,
-            },
-          }}
-        >
-          {data
-            ? data.map((item, index) => {
-                console.log(item.image);
-                return (
-                  <SwiperSlide className="" key={index}>
-                    <div className="Card">
-                      <div className="bg-img d-flex justify-content-center mt-4">
-                        <div className="card-img">
-                          <Image
-                            src={
-                              item.image
-                                ? `https://drive.google.com/thumbnail?id=${item.image}&sz=s1080`
-                                : swal1
-                            }
-                            className="img7"
-                            width={100}
-                            height={100}
-                            alt="profile"
-                          />
-                        </div>
-                      </div>
-                      <div className="card-text ms-3">
-                        <h3 className="me-4">{item.fullname}</h3>
-                        <span className="fw-light">{item.jobs}</span>
-                        <p className="w-75 ms-4">{item.opini}</p>
-                      </div>
-                    </div>
-                  </SwiperSlide>
-                );
-              })
-            : detail.map((item, index) => {
-                console.log(item);
-                return (
-                  <SwiperSlide className="" key={index}>
-                    <div className="Card">
-                      <div className="bg-img d-flex justify-content-center mt-4">
-                        <div className="card-img">
-                          <Image
-                            src={
-                              item.image !== null
-                                ? `https://drive.google.com/uc?export=view&id=${item.image}`
-                                : swal1
-                            }
-                            className="img7"
-                            width={100}
-                            height={100}
-                            alt="profile"
-                          />
-                        </div>
-                      </div>
-                      <div className="card-text ms-3">
-                        <h3 className="me-4">{item.fullname}</h3>
-                        <span className="fw-light">{item.jobs}</span>
-                        <p className="w-75 ms-4">{item.opini}</p>
-                      </div>
-                    </div>
-                  </SwiperSlide>
-                );
-              })}
-
-          {/* <SwiperSlide  className=''>
-            <div className='Card'>
-                <div className='bg-img'>
-                    <div className="card-img ">
-                        <Image src={swal1} className="img7"/>
-                    </div>
-                    
-                </div>
-                <div  className='card-text '>
-                        <h3 className=''>Niall Horan</h3>
-                        <span className='fw-light'>Web Developer</span>
-                        <p className='w-75 ms-4'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
-                    </div>
-            </div>
-        </SwiperSlide>
-        <SwiperSlide  className=''>
-            <div className='Card'>
-                <div className='bg-img'>
-                    <div className="card-img ">
-                        <Image src={swal1} className="img7"/>
-                    </div>
-                    
-                </div>
-                <div  className='card-text '>
-                        <h3 className=''>Niall Horan</h3>
-                        <span className='fw-light'>Web Developer</span>
-                        <p className='w-75 ms-5'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
-                    </div>
-            </div>
-        </SwiperSlide>
-        <SwiperSlide  className=''>
-            <div className='Card'>
-                <div className='bg-img'>
-                    <div className="card-img ">
-                        <Image src={swal1} className="img7"/>
-                    </div>
-                    
-                </div>
-                <div  className='card-text '>
-                        <h3 className=''>Niall Horan</h3>
-                        <span className='fw-light'>Web Developer</span>
-                        <p className={`w-75 ms-4 `}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
-                    </div>
-            </div>
-        </SwiperSlide> */}
-        </Swiper>
+      <div className="w-100">
+        <LandingCarousel data={data}/>
       </div>
 
       <div className="container_content4 my-5">

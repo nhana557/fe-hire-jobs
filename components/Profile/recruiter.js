@@ -40,11 +40,11 @@ const Profile = ({ detail }) => {
                   <p>{detail.company_description ? detail.company_description : ``}</p>
                 </div>
                 <div className="container w-50">
-                  <Link href="/edit-recruiter">
+                  {/* <Link href="/edit-recruiter"> */}
                     <button className={`btn ${styles.btn_custom}`}>
                       Hubungi
                     </button>
-                  </Link>
+                  {/* </Link> */}
                   <div className=" d-flex w-100 mt-5 text-secondary text-decoration-none flex-column align-items-center fs-5">
                     <div className="d-flex flex-column ">
                       <span className="mb-2">
