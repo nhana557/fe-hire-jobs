@@ -97,9 +97,9 @@ export default function LandingCarousel({ data }) {
         {data.map((res, index) => {
           console.log(res);
           return (
-            <div className="w-100">
+            <div className="w-100" key={index}>
               <div
-                key={index}
+                
                 className="shadow p-4 mb-5 bg-body rounded mx-2"
                 style={{ height: "350px" }}
               >
