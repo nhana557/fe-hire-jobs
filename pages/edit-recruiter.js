@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar/NavbarDetail";
 import Footer from "../components/footer/Footer";
 import Image from "next/image";
-// import UploadImage from "../assets/image/upload_image.png";
 import styles from "../styles/Profile.module.css";
 import ImageProfile from "../assets/iconOffice.svg";
 import Cookies from "js-cookie";
@@ -13,7 +12,6 @@ import Link from "next/link";
 const Profile = () => {
   const token = Cookies.get("token");
   const [detail, setDetail] = useState([]);
-  console.log(detail)
   const [loading, setLoading] = useState(false);
   const [image, setImage] = useState();
   const [form, setFrom] = useState({
@@ -28,13 +26,12 @@ const Profile = () => {
 
   const imageChangeHandler = (e) => {
     setImage(e.target.files[0]);
-    console.log(e.target.files[0]);
   };
+
   const onSubmitImage = () => {
     document.getElementById("close").click();
     setLoading(true);
     const formData = new FormData();
-    // if (image) {
     formData.append("image", image);
     axios
       .put(
@@ -48,7 +45,6 @@ const Profile = () => {
         }
       )
       .then((res) => {
-        console.log(res);
         Swal.fire({
           icon: "success",
           title: res.data.message,
@@ -67,8 +63,8 @@ const Profile = () => {
           });
         fetch();
       });
-    // }
   };
+
   const handleChange = (e) => {
     e.preventDefault();
     setFrom({
@@ -76,6 +72,7 @@ const Profile = () => {
       [e.target.name]: e.target.value,
     });
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = {
@@ -88,7 +85,6 @@ const Profile = () => {
       company: form.company,
     };
     e.preventDefault();
-    console.log(data);
     if (data.company_field || data.address || data.company_description || data.instagram || data.instagram || data.company || data.linkedin || data.phonenumber) {
       axios
         .put(`${process.env.API_BACKEND}authRecruiter/update-profile/`, data, {
@@ -98,15 +94,13 @@ const Profile = () => {
           },
         })
         .then((result) => {
-          console.log(result);
           Swal.fire({
             icon: "success",
             title: result.data.message,
           });
           fetch();
         })
-        .catch((err) => {
-          console.log(err)
+        .catch(() => {
           Swal.fire({
             icon: "error",
             title: "error",
@@ -119,7 +113,7 @@ const Profile = () => {
       });
     }
   };
-  // console.log(detail)
+  
   const fetch = async () => {
       const result = await axios.get(
         `${process.env.API_BACKEND}authRecruiter/profile`,
@@ -129,9 +123,7 @@ const Profile = () => {
           },
         }
       );
-      console.log(result.data.data[0]);
       setDetail(result.data.data[0]);
-      console.log(detail);
     }
 
   useEffect(() => {
@@ -264,7 +256,6 @@ const Profile = () => {
                   <h3>Data Diri</h3>
                   <hr />
                   <form
-                    //   onSubmit={handleCreate}
                     className="w-100 form-sign-up"
                   >
                     <div className="mb-2">
@@ -276,7 +267,6 @@ const Profile = () => {
                         name="company"
                         className="form-input form-control"
                         id="nama"
-                        // defaultValue={detail.fullname}
                         placeholder="Masukan nama perusahan"
                         onChange={handleChange}
                       />
@@ -287,7 +277,6 @@ const Profile = () => {
                         Bidang
                       </label>
                       <input
-                        // defaultValue={detail.jobs}
                         type="text"
                         name="company_bidang"
                         className="form-input form-control"
@@ -302,7 +291,6 @@ const Profile = () => {
                         kota
                       </label>
                       <input
-                        // defaultValue={detail.address}
                         type="text"
                         name="address"
                         className="form-input form-control"
@@ -331,7 +319,6 @@ const Profile = () => {
                       Instagram
                       </label>
                       <input
-                        // defaultValue={detail.address}
                         type="text"
                         name="instagram"
                         className="form-input form-control"
@@ -345,7 +332,6 @@ const Profile = () => {
                       Nomor Telepon
                       </label>
                       <input
-                        // defaultValue={detail.address}
                         type="text"
                         name="phonenumber"
                         className="form-input form-control"
@@ -359,7 +345,6 @@ const Profile = () => {
                         Linkedin
                       </label>
                       <input
-                        // defaultValue={detail.address}
                         type="text"
                         name="linkedin"
                         className="form-input form-control"

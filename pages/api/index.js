@@ -8,6 +8,6 @@ export default async function Peler() {
     return detail;
     
   } catch (error) {
-    console.log("error", error)
+    return 
   }
 }

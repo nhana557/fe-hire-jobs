@@ -20,7 +20,6 @@ export default function LoginForm() {
       ...form,
       [e.target.name]: e.target.value,
     });
-    console.log(form);
   };
 
   const handleLogin = (e) => {
@@ -102,15 +101,12 @@ export default function LoginForm() {
                         Lupa kata sandi?
                       </label>
                     </div>
-                    {/* <Link > */}
                     <button
-                      // type="submit"
                       className={`btn btn-warning ${styles.submit} text-white w-100`}
                       onClick={handleLogin}
                     >
                       Masuk
                     </button>
-                    {/* </Link> */}
 
                     <br />
                     <div className={`${styles.text_}`}>

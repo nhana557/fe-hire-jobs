@@ -1,6 +1,5 @@
 import Head from "next/head";
 import React, { Fragment } from "react";
-// import Script from 'next/script';
 import Portofolio from "../../components/Portofolio/swal";
 import Pengalaman from "../experiences/constant";
 import styles from '../../styles/Profile.module.css'
@@ -9,7 +8,6 @@ import Image from "next/image";
 
 
 const Profile = ({ detail, portfolio, experience }) => {
-  console.log(`https://drive.google.com/uc?export=view&id=${detail?.image}`)
   return (
     <div>
       <Head>
@@ -37,7 +35,6 @@ const Profile = ({ detail, portfolio, experience }) => {
                   <h3>{detail?.fullname}</h3>
                   <h5>{detail?.jobs}</h5>
                   <p>{detail?.address}</p>
-                  {/* <p>{detail?.job}</p> */}
                   <p>
                     {detail.description ? 
                     detail.description : ``  
@@ -48,7 +45,6 @@ const Profile = ({ detail, portfolio, experience }) => {
                   <p className="fw-1 fw-bold mt-5">Skill</p>
                   <div className="container text-center">
                     <div className="row gy-2">
-                        {/* <div className={`border bg-warning ${styles.container_skill}`}> */}
                         {
                           detail?.skill?.split(',').map((item, index) =>(
                             <div className="col-4" key={index}>
@@ -58,19 +54,12 @@ const Profile = ({ detail, portfolio, experience }) => {
                             </div>
                           ))
                         }
-                    {/* </div> */}
-                      
-                      
                     </div>
                   </div>
 
                       <ul className="d-flex flex-column mt-5">
                         {detail.instagram ? <li><i className="bi bi-instagram "/>{detail.instagram}</li> : ''}
                         {detail.github ? <li><i className="bi bi-github "/>{detail.github}</li> : ''}
-                        
-                        {/* <li><i class="bi bi-envelope "/> Louistommo@gmail.com</li>
-                        <li><i class="bi bi-github "/> @Louistommo</li>
-                        <li><i class="bi bi-linkedin "/> @Louistommo91</li> */}
                       </ul>
                       
                 </div>
@@ -117,32 +106,6 @@ const Profile = ({ detail, portfolio, experience }) => {
                         tabIndex="0"
                       >
                         <Portofolio data={portfolio} />
-                        {/* <div className="row row-cols-2 row-cols-lg-3 align-items-center g-5">
-                            {
-                              portfolio?.map((item, index) =>{
-                                console.log(item)
-                                return(
-                                  <div className="col categories" 
-                                  key={index}>
-                                    <div className={`${styles.card_custom} card text-center d-flex flex-column`}>
-                                            <Image
-                                              className={`${styles.img}`}
-                                              src={item.image[0]}
-                                              width='1'
-                                              height={1}
-                                              layout="responsive"
-                                              alt="portofolio"
-                                              />
-                                          <a href="/category/{category[0].id}">
-                                            <p className="font-category fw-1">{item.name_app}</p>
-                                          </a>
-                                      </div>
-                                    </div>
-                                )
-                              })
-                            }
-
-                            </div> */}
                       </div>
                       <div
                         className="tab-pane fade"
@@ -155,27 +118,6 @@ const Profile = ({ detail, portfolio, experience }) => {
                       </div>
                     </div>
                   </div>
-                    {/* <div className="tab-content mt-5" id="nav-tabContent">
-                      <div
-                        className="tab-pane fade show active"
-                        id="nav-home"
-                        role="tabpanel"
-                        aria-labelledby="nav-home-tab"
-                        tabIndex="0"
-                      >
-                        <Portofolio />
-                      </div>
-                      <div
-                        className="tab-pane fade"
-                        id="nav-profile"
-                        role="tabpanel"
-                        aria-labelledby="nav-profile-tab"
-                        tabIndex="0"
-                      >
-                        <Pengalaman />
-                      </div>
-                    </div> */}
-                  {/* </div> */}
                 </div>
               </div>
             </div>

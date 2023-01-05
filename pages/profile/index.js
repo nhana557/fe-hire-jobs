@@ -21,9 +21,7 @@ const Profile = () => {
   const [loading, setLoading] = useState(false);
   const [portfolio, setPortfolio] = useState([]);
   const [experience, setExperience] = useState([]);
-  console.log(portfolio);
-  console.log(experience);
-  console.log(detail);
+
   const fetch = async () => {
     if(role){
       const result = await axios.get(
@@ -61,19 +59,16 @@ const Profile = () => {
     const result = await axios.get(
       `${process.env.API_BACKEND}experience/${id}`
     );
-
     setExperience(result.data.data);
   };
 
   const imageChangeHandler = (e) => {
     setImage(e.target.files[0]);
-    console.log(e.target.files[0]);
   };
   const onSubmitImage = () => {
     document.getElementById("close").click();
     setLoading(true)
     const formData = new FormData();
-    // if (image) {
     formData.append("image", image);
     axios
       .put(
@@ -87,7 +82,6 @@ const Profile = () => {
         }
       )
       .then((res) => {
-        console.log(res);
         Swal.fire({
           icon: "success",
           title: res.data.message,
@@ -95,8 +89,8 @@ const Profile = () => {
         })
         fetch();
       });
-    // }
   };
+  
   useEffect(() => {
     fetch();
     fetchPort();
@@ -199,7 +193,6 @@ const Profile = () => {
                   <h3>{detail?.fullname}</h3>
                   <h5>{detail?.jobs}</h5>
                   <p>{detail?.address}</p>
-                  {/* <p>{detail?.job}</p> */}
                   <p>{detail.description ? detail.description : ``}</p>
                   <Link href="/edit-profile">
                     <button className={`btn ${styles.btn_custom}`}>
@@ -210,7 +203,6 @@ const Profile = () => {
                   <p className="fw-1 fw-bold mt-5">Skill</p>
                   <div className="container text-center">
                     <div className="row gy-2">
-                      {/* <div className={`border bg-warning ${styles.container_skill}`}> */}
                       {detail?.skill?.split(",").map((item, index) => (
                         <div className="col-4" key={index}>
                           <div>
@@ -220,7 +212,6 @@ const Profile = () => {
                           </div>
                         </div>
                       ))}
-                      {/* </div> */}
                     </div>
                   </div>
 

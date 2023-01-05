@@ -26,12 +26,7 @@ function Navbar() {
                                 <Link href="/detail">
                                 <button className={`${styles.login} nav-link btn btn-outline-light reg me-2 w-100 `} >Details</button>
                                 </Link>
-                            </li>  
-                            {/* <li className={`${styles.border_none} nav-item mx-3 my-1`}>
-                                <Link href="/profile">
-                                <button className={`${styles.login} nav-link btn btn-outline-light reg me-2 w-100`} >Profile</button>
-                                </Link>
-                            </li> */}
+                            </li> 
                          </ul>
                     </div>
                 </div>

@@ -24,7 +24,6 @@ export default function RegisterRecuiterForm() {
       ...form,
       [e.target.name]: e.target.value,
     });
-    console.log(form);
   };
 
   const handleSubmit = (e) => {
@@ -135,25 +134,12 @@ export default function RegisterRecuiterForm() {
                       placeholder="Masukkan Kata Sandi"
                       onChange={handleChange}
                     />
-                    {/* <label className={styles.inputLabelText} htmlFor="confirmpassword">
-                    Confirm Password
-                    </label>
-                    <input
-                      required
-                      type="password"
-                      name="confirmpassword"
-                      className="login form-control my-2"
-                  
-                      placeholder="Masukkan Konfirmasi Kata Sandi"
-                    /> */}
-                    {/* <Link href='/login'> */}
                     <button
                       type="submit"
                       className="btn btn-warning submit text-white w-100 mt-3"
                     >
                       Daftar
                     </button>
-                    {/* </Link> */}
 
                     <br />
                     <label className="dont-have-an-account-text align-self-center ">

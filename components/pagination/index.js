@@ -1,7 +1,4 @@
-// import style from "../../styles/Detail.module.css";
-// import left from "../../assets/detail/previous.svg";
-// import right from "../../assets/detail/next.svg";
-// import Image from "next/image";
+
 
 const Pagination = ({increment, decrement, workerPerPage, totalWorker, paginate }) => {
   const pageNumbers = [];

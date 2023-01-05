@@ -23,7 +23,6 @@ export default function RegisterWorkerForm() {
       ...from,
       [e.target.name]: e.target.value,
     });
-    console.log(from);
   };
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -104,26 +103,13 @@ export default function RegisterWorkerForm() {
                       placeholder="Masukkan Kata Sandi"
                       onChange={handleChange}
                     />
-                    {/* <label className={styles.inputLabelText} htmlFor="confirmpassword">
-                    Confirm Password
-                    </label>
-                    <input
-                      type="password"
-                      name="confirmpassword"
-                      className="login form-control my-2"
-                  
-                      placeholder="Masukkan Konfirmasi Kata Sandi"
                 
-                    />
-                 */}
-                    {/* <Link href='/login'> */}
                     <button
                       type="submit"
                       className="btn btn-warning submit text-white w-100 mt-3 mb-2"
                     >
                       Daftar
                     </button>
-                    {/* </Link> */}
                     <br />
                     <label className="dont-have-an-account-text align-self-center">
                       Sudah memiliki akun?

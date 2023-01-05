@@ -6,20 +6,13 @@ import Baner from "../components/header/Baner";
 import Footer from "../components/footer/Footer";
 import Peler from "./api/index";
 
-// export async function getStaticProps() {
-//   const result = await axios.get(`${process.env.API_BACKEND}review`);
-//   console.log(result.data);
-//   return { props: { detail: JSON.parse(JSON.stringify(result.data.data)) } };
-// }
 
 export async function getStaticProps() {
   const detail = await Peler()
-  // console.log(detail);
   return { props: { detail } };
 }
 
 export default function Home({ detail }) {
-  console.log(detail);
   return (
     <Fragment>
       <div className="body">

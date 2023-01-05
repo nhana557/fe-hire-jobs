@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar/NavbarDetail";
 import Footer from "../components/footer/Footer";
 import Image from "next/image";
-// import UploadImage from "../assets/image/upload_image.png";
 import styles from "../styles/Profile.module.css";
 import ImageProfile from "../assets/iconpp.jpg";
 import Cookies from "js-cookie";
@@ -34,7 +33,6 @@ const Profile = () => {
     type: "",
     image: [],
   });
-
   const [image, setImage] = useState();
   const [imagePorto, setImagePorto] = useState([]);
 
@@ -44,20 +42,20 @@ const Profile = () => {
       ...formPorto,
       [e.target.name]: e.target.value,
     });
-    console.log(formPorto);
   };
+
   const handleUploadExp = (e) =>{
     e.preventDefault();
     const file = e.target.files[0]
     setPhoto(file)
   }
+
   const handleUpload = (e) => {
     e.preventDefault();
     const file = e.target.files;
     setImagePorto(file);
-  };
+  }
 
-  console.log(imagePorto);
   const handleSubmitPorto = (e) => {
     e.preventDefault();
 
@@ -66,12 +64,8 @@ const Profile = () => {
     data.append("repository", formPorto.repository);
     data.append("type", formPorto.type);
     for(let img of imagePorto){
-      console.log(img)
       data.append("image", img);
     }
-    // data.append("image", imagePorto[1]);
-    // data.append("image", imagePorto[2]);
-    // data.append("image", imagePorto[3]);
     if (
       formPorto.name_app &&
       formPorto.repository &&
@@ -86,14 +80,12 @@ const Profile = () => {
           "Content-Type": "multipart/form-data",
         })
         .then((res) => {
-          console.log(res);
           Swal.fire({
             icon: "success",
             title: res.data.message,
           });
         })
         .catch((err) => {
-          console.log(err)
           Swal.fire({
           icon: "error",
           title: "Error",
@@ -105,18 +97,15 @@ const Profile = () => {
         title: "Error",
       });
     }
-    // }
   };
 
   const imageChangeHandler = (e) => {
     setImage(e.target.files[0]);
-    console.log(e.target.files[0]);
   };
   const onSubmitImage = () => {
     document.getElementById("close").click();
     setLoading(true);
     const formData = new FormData();
-    // if (image) {
     formData.append("image", image);
     axios
       .put(
@@ -130,7 +119,6 @@ const Profile = () => {
         }
       )
       .then((res) => {
-        console.log(res);
         Swal.fire({
           icon: "success",
           title: res.data.message,
@@ -149,7 +137,6 @@ const Profile = () => {
           });
         fetch();
       });
-    // }
   };
 
   const handleChangeExpe = (e) => {
@@ -158,18 +145,10 @@ const Profile = () => {
       ...formExpe,
       [e.target.name]: e.target.value,
     });
-    console.log(formExpe);
   };
   const handleSubmitExpe = (e) => {
     e.preventDefault();
-    // const data = {
-    //   position: formExpe.position,
-    //   name_company: formExpe.name_company,
-    //   job_description: formExpe.job_description,
-    //   month_year: formExpe.month_year,
-    // };
     const formData = new FormData();
-    // if (image) {
     formData.append("position", formExpe.position);
     formData.append("name_company", formExpe.name_company);
     formData.append("job_description", formExpe.job_description);
@@ -189,7 +168,6 @@ const Profile = () => {
           "Content-Type": "multipart/form-data",
         })
         .then((res) => {
-          console.log(res);
           if(res.data.message === 'error'){
             Swal.fire({
               icon: "error",
@@ -201,8 +179,7 @@ const Profile = () => {
             title: res.data.message,
           });
         })
-        .catch((err) => {
-          console.log(err);
+        .catch(() => {
           Swal.fire({
             icon: "error",
             title: "Error guys",
@@ -223,6 +200,7 @@ const Profile = () => {
       [e.target.name]: e.target.value,
     });
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = {
@@ -232,7 +210,6 @@ const Profile = () => {
       description: form.description,
     };
     e.preventDefault();
-    console.log(data);
     if (data.fullname || data.address || data.jobs || data.description) {
       axios
         .put(`${process.env.API_BACKEND}authWorker/update-profile/`, data, {
@@ -242,7 +219,6 @@ const Profile = () => {
           "Content-Type": "application/json",
         })
         .then((result) => {
-          console.log(result);
           Swal.fire({
             icon: "success",
             title: result.data.message,
@@ -250,7 +226,6 @@ const Profile = () => {
           fetch();
         })
         .catch((err) => {
-          console.log(err)
           Swal.fire({
             icon: "error",
             title: "error",
@@ -263,7 +238,7 @@ const Profile = () => {
       });
     }
   };
-  // console.log(detail)
+
   const fetch = async () => {
       const result = await axios.get(
         `${process.env.API_BACKEND}authWorker/profile`,
@@ -390,7 +365,6 @@ const Profile = () => {
                       <span className="text-secondary">alamat</span>
                     )}
                   </p>
-                  {/* <p>Freelancer</p> */}
                 </div>
               </div>
               <button className="btn w-100 reg my-3" onClick={handleSubmit}>
@@ -406,7 +380,6 @@ const Profile = () => {
                   <h3>Data Diri</h3>
                   <hr />
                   <form
-                    //   onSubmit={handleCreate}
                     className="w-100 form-sign-up"
                   >
                     <div className="mb-2">
@@ -486,7 +459,6 @@ const Profile = () => {
                         onChange={(e) => {
                           e.preventDefault();
                           data.push(e.target.value);
-                          console.log(data);
                         }}
                       />
                       <button
@@ -508,7 +480,6 @@ const Profile = () => {
                               }
                             )
                             .then((result) => {
-                              console.log(result);
                               Swal.fire({
                                 icon: "success",
                                 title: result.data.message,
@@ -516,7 +487,6 @@ const Profile = () => {
                               fetch();
                             })
                             .catch((err) => {
-                              console.log(err)
                               Swal.fire({
                                 icon: "error",
                                 title: "error",
@@ -691,7 +661,6 @@ const Profile = () => {
                             type="radio"
                             name="type"
                             id="flexRadioDefault2"
-                            // checked
                             value="Aplikasi Web"
                             onChange={handleChangePort}
                           />
@@ -710,18 +679,10 @@ const Profile = () => {
                       </label>
                       <input
                         type="file"
-                        // name="image"
                         className="form-control"
                         onChange={handleUpload}
                         multiple
                       ></input>
-                      {/* <Image
-                        src={UploadImage}
-                        layout="responsive"
-                        width="2"
-                        height="1"
-                        alt="Profile"
-                      /> */}
                     </div>
                     <hr className="mt-3" />
                     <div className="row justify-content-center">

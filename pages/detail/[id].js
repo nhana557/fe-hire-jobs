@@ -11,11 +11,9 @@ import { useState } from "react";
 /* SSR */
 export async function getServerSideProps(context) {
   const id = context.params.id
-  console.log("ini id",id)
   const res = await axios.get(`${process.env.API_BACKEND}worker/${id}`);
-  console.log(res.data)
   return {
-    props: { data: res.data.data.worker[0] },
+    props: { data: res.data.data.worker[0]},
   };
 }
 
@@ -24,8 +22,6 @@ const ProfileDetails = ({ data }) => {
   const [experience, setExperience] = useState([]);
   const Router = useRouter();
   const id = Router.query.id;
-  console.log(id);
-  console.log(portfolio);
   const fetchPort = async() =>{
     const result = await axios.get(`${process.env.API_BACKEND}portfolio/${id}`)
     setPortfolio(result.data.data);

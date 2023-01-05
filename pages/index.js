@@ -8,8 +8,6 @@ import Peler from "./api/index";
 
 export async function getStaticProps() {
   const detail = await Peler()
-  console.log("ini detail", detail)
-  // console.log(detail);
   return { props: { detail } };
 }
 export default function Home({detail}) {

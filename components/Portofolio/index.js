@@ -8,23 +8,21 @@ import Link from "next/link";
 const Portofolio = ({ data }) => {
   const token = Cookies.get('token')
   const id = Cookies.get("id");
+  const [loading, setLoading] = useState(false)
   const [dataPort, setDataPort] = useState([])
   const [idPort, setIdPort] = useState('')
-  console.log(idPort)
   const [formPorto, setPortfolio] = useState({
     name_app: "" ,
     repository: "",
     type: "",
   });
   const [imagePorto, setImagePorto] = useState();
-  console.log(imagePorto)
   const handleChangePort = (e) => {
     e.preventDefault();
     setPortfolio({
       ...formPorto,
       [e.target.name]: e.target.value
     });
-    console.log(formPorto);
   };
   const handleUpload = (e) => {
     e.preventDefault();
@@ -32,22 +30,15 @@ const Portofolio = ({ data }) => {
     setImagePorto(file);
   };
   const handleSubmitPorto = async(e) => {
-    Swal.fire({
-      title: 'loading...',
-      allowEscapeKey: false,
-      allowOutsideClick: false,
-      showConfirmButton: false,
-    })
+    setLoading(true)
     e.preventDefault();
     const data = new FormData();
     data.append("name_app", formPorto.name_app);
     data.append("repository", formPorto.repository);
     data.append("type", formPorto.type);
     for(let img of imagePorto){
-      console.log(img)
       data.append("image", img);
     }
-    console.log(data)
     await  axios
         .put(`${process.env.API_BACKEND}portfolio/${idPort}`, data, {
           headers: {
@@ -56,13 +47,13 @@ const Portofolio = ({ data }) => {
           "Content-Type": "multipart/form-data",
         })
         .then((res) => {
-          console.log(res);
           Swal.fire({
             icon: "success",
             title: res.data.message,
             confirmButtonText: "Oke",
             }).then((res) => {
               if (res.isConfirmed) {
+                setLoading(false)
                 return window.location.reload();
             }
           })
@@ -71,19 +62,15 @@ const Portofolio = ({ data }) => {
           Swal.fire({
             icon: "error",
             title: "Error",
-          });
-          console.log(err)});
+          });});
     }
     
   const getPortByID = (id_port) =>{
-    console.log(id_port)
     return(
       axios.get(`${process.env.API_BACKEND}portfolio/id/${id_port}`)
       .then(res =>{
-        console.log(res.data.data)
         setDataPort(res.data.data[0])
       })
-      .catch(err => console.log(err))
     )
   }
   
@@ -108,7 +95,6 @@ const Portofolio = ({ data }) => {
         return(axios
           .delete(`${process.env.API_BACKEND}portfolio/${Id}`)
           .then((res) => {
-            console.log(res);
             Swal.fire({
               icon: "success",
               title: res.data.message,
@@ -131,7 +117,6 @@ const Portofolio = ({ data }) => {
     <div>
       <div className="column align-items-center g-1">
         {data?.map((item, index) => {
-          // setIdPort(item)
           return (
             <div className="col-lg-10 categories border ms-lg-5 mb-5" key={index}>
               {id ? (
@@ -168,7 +153,7 @@ const Portofolio = ({ data }) => {
                           getPortByID(item.id)
                         }
                       }
-                        >Update</button>
+                        >{!loading ? "Update" : "Wait..."}</button>
                       </div>
                     </div>
                     <div
@@ -193,7 +178,6 @@ const Portofolio = ({ data }) => {
                           </div>
                           <div className="modal-body">
                             <form
-                              // onSubmit={handleSubmitPorto}
                               className="w-100 form-sign-up"
                             >
                               <div className="mb-2">
@@ -242,7 +226,6 @@ const Portofolio = ({ data }) => {
                                     />
                                     <label
                                       className="form-check-label"
-                                      // for="flexRadioDefault1"
                                     >
                                       Aplikasi mobile
                                     </label>
@@ -253,13 +236,11 @@ const Portofolio = ({ data }) => {
                                       type="radio"
                                       name="type"
                                       id="flexRadioDefault2"
-                                      // checked
                                       value="Aplikasi Web"
                                       onChangeCapture={handleChangePort}
                                     />
                                     <label
                                       className="form-check-label"
-                                      // for="flexRadioDefault2"
                                     >
                                       Aplikasi web
                                     </label>
@@ -273,20 +254,12 @@ const Portofolio = ({ data }) => {
                                 </label>
                                 <input
                                   type="file"
-                                  // name="image"
                                   className="form-control"
                                   onChange={handleUpload}
                                   multiple
                                 ></input>
                               </div>
-                              {/* <hr className="mt-3" /> */}
                               <div className="row justify-content-center">
-                                {/* <button
-                                  type="submit"
-                                  className="btn btn-outline-warning"
-                                >
-                                  Tambah Portofolio
-                                </button> */}
                               </div>
                             </form>
                           </div>
@@ -321,7 +294,6 @@ const Portofolio = ({ data }) => {
               ) : (
                 <div>
                 <span
-                  // href="/category/{category[0].id}"
                   className="d-flex ms-auto "
                 >
                   <h1 className="font-category fw-1 m-auto">{item.name_app}</h1>
@@ -332,12 +304,8 @@ const Portofolio = ({ data }) => {
                 </div>
                 </div>
               )}
-              {/* <div
-                className={`${styles.card_custom} card text-center d-flex flex-column row p-0`}
-              > */}
               <div className="row">
                 {item?.image?.map((image, index) => {
-                  console.log(image)
                   return (
                     <div className="col-5 m-auto mt-5" key={index}>
                       <Image
@@ -353,45 +321,8 @@ const Portofolio = ({ data }) => {
                 })}
               </div>
             </div>
-
-            // </div>
           );
         })}
-        {/* {
-          data[0]?.image.map((image, index) =>{
-            return(
-              <div key={index} className="col categories">
-              <Image
-                    key={index}
-                    className={`${styles.img}`}
-                    src={image}
-                    width="1"
-                    height={1}
-                    layout="responsive"
-                    alt="portofolio"
-                  />
-            </div>
-            )
-          })
-        } */}
-        {/* <div className="col categories">
-          <div
-            className={`card ${styles.card_custom} text-center d-flex flex-colum`}
-          >
-            <Image
-              className={`${styles.img}`}
-              src={Porto6}
-              layout="responsive"
-              alt="portofolio"
-            />
-            <a href="/category/{category[0].id}">
-              <p className="font-category fw-1">Project management web</p>
-            </a>
-            <div className="card-img-overlay text-white d-flex justify-content-center align-items-center">
-              <p className="font-category"></p>
-            </div>
-          </div>
-        </div> */}
       </div>
     </div>
   );

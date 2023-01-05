@@ -10,7 +10,6 @@ import { loginWorker } from "../../config/Redux/Action/authAction";
 export default function LoginForm() {
   const dispatch = useDispatch();
   const router = useRouter();
-  // const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -21,12 +20,10 @@ export default function LoginForm() {
       ...form,
       [e.target.name]: e.target.value,
     });
-    console.log(form);
   };
 
   const handleLogin = (e) => {
     e.preventDefault();
-    // setLoading(true);
     dispatch(loginWorker(form, router));
   };
 
@@ -106,16 +103,12 @@ export default function LoginForm() {
                         Lupa kata sandi?
                       </label>
                     </div>
-                    {/* <Link > */}
                     <button
-                      // type="submit"
                       className={`btn btn-warning ${styles.submit} text-white w-100`}
                       onClick={handleLogin}
                     >
                       Masuk
                     </button>
-                    {/* </Link> */}
-
                     <br />
                     <div className={`${styles.text_}`}>
                       <label className="dont-have-an-account-text align-self-center">

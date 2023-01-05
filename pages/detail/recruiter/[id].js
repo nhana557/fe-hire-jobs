@@ -5,12 +5,11 @@ import Profile from "../../../components/Profile/recruiter";
 import Navbar from "../../../components/Navbar/NavbarDetail";
 import styles from "../../../styles/Home.module.css";
 import axios from "axios";
+
 /* SSR */
 export async function getServerSideProps(context) {
-  const id = context.params.id
-  console.log(id)
+  const id = context.params.id;
   const res = await axios.get(`${process.env.API_BACKEND}recruiter/${id}`);
-  console.log('data recruiter',res.data);
   return {
     props: { data: res.data.data[0] },
   };

@@ -3,7 +3,6 @@ import Slider from "react-slick";
 import Image from "next/image";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-// import styles from "../../../styles/Landing.module.css";
 
 function CustomNextArrow(props) {
   const { className, style, onClick } = props;
@@ -50,7 +49,6 @@ function CustomPrevArrow(props) {
 }
 
 export default function LandingCarousel({ data }) {
-  console.log(data);
   const settings = {
     slidesToShow: 3,
     slidesToScroll: 1,
@@ -88,14 +86,12 @@ export default function LandingCarousel({ data }) {
   };
 
   return (
-    // ${styles["slider-container"]}
     <div className={`w-100 `}>
       <h1 className="fw-bold text-center mb-5">
         Their opinion about Hire Jobs
       </h1>
       <Slider {...settings}>
         {data.map((res, index) => {
-          console.log(res);
           return (
             <div className="w-100" key={index}>
               <div

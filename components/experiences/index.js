@@ -1,4 +1,3 @@
-// import Head from "next/head";
 import React, {  Fragment, useState } from "react";
 import Image from "next/image";
 import iconOffice from "../../assets/iconppOffice.svg";
@@ -7,7 +6,6 @@ import axios from "axios";
 import Cookies from "js-cookie";
 
 const Experiences = ({ data }) => {
-  console.log(data);
   const token = Cookies.get('token')
   const [formExpe, setformExpe] = useState({
     position: '',
@@ -17,20 +15,21 @@ const Experiences = ({ data }) => {
     id: ''
   })
   const [Photo, setPhoto] = useState()
-  console.log(formExpe.id)
+  
   const handleChange = (e) =>{
     e.preventDefault()
     setformExpe({
       ...formExpe,
       [e.target.name]: e.target.value
     })
-    console.log(formExpe)
   }
+
   const handleUpload = (e) =>{
     e.preventDefault()
     const file = e.target.files[0];
     setPhoto(file)
   }
+  
   const handleSubmitUpdate = async (e) =>{
     Swal.fire({
       title: 'loading...',
@@ -40,7 +39,6 @@ const Experiences = ({ data }) => {
   })
     e.preventDefault();
     const formData = new FormData();
-    // if (image) {
     formData.append("position", formExpe.position);
     formData.append("name_company", formExpe.name_company);
     formData.append("job_description", formExpe.job_description);
@@ -60,7 +58,6 @@ const Experiences = ({ data }) => {
           "Content-Type": "multipart/form-data",
         })
         .then((res) => {
-          console.log(res);
           Swal.fire({
             icon: "success",
             title: res.data.message,
@@ -72,7 +69,6 @@ const Experiences = ({ data }) => {
           })
         })
         .catch((err) => {
-          console.log(err);
           Swal.fire({
             icon: "error",
             title: "Error guys",
@@ -99,7 +95,6 @@ const Experiences = ({ data }) => {
         return(axios
           .delete(`${process.env.API_BACKEND}experience/${Id}`)
           .then((res) => {
-            console.log(res);
             Swal.fire({
               icon: "success",
               title: res.data.message,
@@ -185,7 +180,6 @@ const Experiences = ({ data }) => {
                             </label>
                             <input
                               type="text"
-                              // defaultValue={dataPort?.name_app}
                               name="position"
                               className="form-input form-control"
                               id="nama"
@@ -200,7 +194,6 @@ const Experiences = ({ data }) => {
                             </label>
                             <input
                               type="text"
-                              // defaultValue={dataPort?.repository}
                               name="name_company"
                               className="form-input form-control"
                               id="nama"

@@ -9,7 +9,6 @@ import Link from "next/link";
 import axios from "axios";
 
 function Baner({ data }) {
-  console.log("ini data", data);
   const [detail, setDetail] = useState([]);
   const fetch = async () => {
     const result = await axios.get(`${process.env.API_BACKEND}review`);

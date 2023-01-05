@@ -15,9 +15,7 @@ import Cookies from 'js-cookie';
 function Navbar() {
     const router = useRouter()
     const [profile, setProfile] = useState([])
-    console.log(profile)
-    const role = Cookies.get('role');
-    console.log(role)
+    const role = Cookies.get('role')
     const token = Cookies.get('token')
     const handleSignOut = () =>{
         Swal.fire({
@@ -46,7 +44,6 @@ function Navbar() {
                 }
             })
             .then(res =>{
-                console.log(res)
                 setProfile(res.data.data)
             })
         }else{
@@ -56,7 +53,6 @@ function Navbar() {
                 }
             })
             .then(res =>{
-                console.log(res)
                 setProfile(res.data.data[0])
             })
         }
@@ -119,15 +115,6 @@ function Navbar() {
                                     variant="link"
                                     id="dropdown-menu-align-end"
                                 >
-                                    {/* <Dropdown.Item
-                                        onClick={() => {
-                                        router.push("/[profile]");
-                                        }}
-                                    >
-                                        My Profile
-                                    </Dropdown.Item> */}
-                                    {/* <Dropdown.Divider /> */}
-                                    
                                     <Dropdown.Item
                                         onClick={() =>{
                                             if(role){
@@ -147,7 +134,6 @@ function Navbar() {
                                         Sign Out
                                     </Dropdown.Item>
                                 </DropdownButton>
-                                {/* </NavDropdown> */}
                             </li>
                          </ul>
                     </div>

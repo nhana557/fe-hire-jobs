@@ -3,7 +3,6 @@ import Image from "next/image";
 import iconOffice from "../../assets/iconppOffice.svg";
 
 const Experiences = ({data}) => {
-  console.log(data)
   return (
     <div>
       <div className="row">

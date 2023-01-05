@@ -33,7 +33,6 @@ function MyApp({ Component, pageProps }) {
           <Component {...pageProps} />
         </Provider>
       </Fragment>
-      {/* <div class="warning hallo">Warning message</div> */}
       <div className="xbox hallo">
         ERR
         <div className="inside">ERR</div>
@@ -51,7 +50,6 @@ MyApp.getInitialProps = async ({ ctx }) => {
   const refreshToken = ctx.req?.cookies?.refreshToken || null;
   const id = ctx.req?.cookies?.id || null;
 
-  console.log("hallo", token);
   return {
     token: token,
     refreshToken: refreshToken,

@@ -10,8 +10,7 @@ import axios from "axios";
 import Link from "next/link";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
-import swicth from '../../styles/switch.module.css'
-
+import swicth from "../../styles/switch.module.css";
 
 export async function getServerSideProps() {
   const res = await axios.get(`${process.env.API_BACKEND}worker`);
@@ -21,33 +20,28 @@ export async function getServerSideProps() {
 }
 
 const Detail = ({ data }) => {
-  console.log(data);
-  const router = useRouter()
+  const router = useRouter();
   const [search, setSearch] = useState("");
   const [dataSearch, setDataSearch] = useState([]);
   const [page, setPage] = useState(1);
   const [workerPerPage] = useState(3);
-  
+
   const handleSearch = (e) => {
     e.preventDefault();
     fetch();
   };
-  console.log(search);
   const fetch = async () => {
     const result = await axios.get(
       `${process.env.API_BACKEND}worker?search=${search}`
     );
     setDataSearch(result.data.data);
-    console.log(result.data.data);
   };
   const fetchSort = async (sortBy, sort) => {
     const result = await axios.get(
       `${process.env.API_BACKEND}worker?sorby=${sortBy}&sort=${sort}`
     );
     setDataSearch(result.data.data);
-    console.log(result.data.data);
   };
-  // console.log(page + 1)
   const increment = () => {
     if (page == 2) {
       return;
@@ -68,9 +62,6 @@ const Detail = ({ data }) => {
   useEffect(() => {
     fetch();
   }, [page]);
-  // })
-  // console.log(sort);
-  console.log(data);
   const indexOfLastPost = page * workerPerPage;
   const indexOfFirstPost = indexOfLastPost - workerPerPage;
   const currentPosts = dataSearch.slice(indexOfFirstPost, indexOfLastPost);
@@ -89,16 +80,21 @@ const Detail = ({ data }) => {
           <div className="d-flex justify-content-between">
             <p className="fw-bold text-white mt-3">Top Jobs</p>
             <div className=" me-5 mt-3 w-25">
-            <div className={`${swicth.toggle_button_cover}`}>
+              <div className={`${swicth.toggle_button_cover}`}>
                 <div className={` mt-4`}>
-                  <div className={`${swicth.button} ${swicth.r} ${swicth.button_5} `} >
-                    <input type="checkbox" className={`${swicth.checkbox} `}
-                    defaultChecked={true}
-                    onClick={(e) =>{
-                      if(e.target.checked === false){
-                        router.push('/detail/recruiter')
-                      }
-                    }}/>
+                  <div
+                    className={`${swicth.button} ${swicth.r} ${swicth.button_5} `}
+                  >
+                    <input
+                      type="checkbox"
+                      className={`${swicth.checkbox} `}
+                      defaultChecked={true}
+                      onClick={(e) => {
+                        if (e.target.checked === false) {
+                          router.push("/detail/recruiter");
+                        }
+                      }}
+                    />
                     <div className={`${swicth.knobs}`}>
                       <span></span>
                     </div>
@@ -106,21 +102,6 @@ const Detail = ({ data }) => {
                   </div>
                 </div>
               </div>
-              {/* <select
-                className={`${style.select}`}
-                onChange={(event) => {
-                  if(event.target.value === 'recruiter'){
-                    router.push('/detail/recruiter')
-                  }
-                  changeSearch(event.target.value)
-                  fetch()
-                }}
-                value={searchBar}
-              >
-                <option value="worker" >Recruiter</option>
-                <option value="recruiter">Worker</option>
-              </select> */}
-              
             </div>
           </div>
         </div>
@@ -152,8 +133,6 @@ const Detail = ({ data }) => {
                     <a
                       className="dropdown-item"
                       onClick={() => {
-                        // setSort("asc");
-                        // setSortBy("fullname");
                         fetchSort("fullname", "asc");
                       }}
                     >
@@ -164,8 +143,6 @@ const Detail = ({ data }) => {
                     <a
                       className="dropdown-item"
                       onClick={() => {
-                        // setSort("asc");
-                        // setSortBy("jobs");
                         fetchSort("jobs", "desc");
                       }}
                     >
@@ -176,8 +153,6 @@ const Detail = ({ data }) => {
                     <a
                       className="dropdown-item"
                       onClick={() => {
-                        // setSort("asc");
-                        // setSortBy("skill");
                         fetchSort("skill", "asc");
                       }}
                     >
@@ -188,10 +163,7 @@ const Detail = ({ data }) => {
                     <a
                       className="dropdown-item"
                       onClick={() => {
-                        // setSort("asc");
-                        // setSortBy("address");
                         fetchSort("address", "desc");
-                        // console.log(sortBy)
                       }}
                     >
                       Location
@@ -204,10 +176,8 @@ const Detail = ({ data }) => {
             <div className={style.main}>
               {search ? (
                 currentPosts?.map((data, index) => {
-                  console.log(data.image);
                   return (
                     <div className={style.card} key={index}>
-                      {/* <Link href={data.fullname}> */}
                       <div className={style.profile}>
                         <Image
                           src={
@@ -221,20 +191,16 @@ const Detail = ({ data }) => {
                           className={style.profile_img}
                         />
                       </div>
-                      {/* </Link> */}
 
                       <div className={style.profiledetail}>
-                        {/* <Link href={data.name}> */}
                         <p
                           className="font-weight-bold "
                           style={{ fontSize: "20px", cursor: "pointer" }}
                         >
                           {data.fullname}
                         </p>
-                        {/* </Link> */}
-                        <p className="text-muted">{
-                          data.jobs === undefined ? "Unknown" : data.jobs
-                        }
+                        <p className="text-muted">
+                          {data.jobs === undefined ? "Unknown" : data.jobs}
                         </p>
                         <p className="text-muted">
                           <Image src={Maps} alt="location" />
@@ -255,10 +221,7 @@ const Detail = ({ data }) => {
                           })}
                         </div>
                       </div>
-                      <Link
-                        href={ `detail/${data.id}`
-                        }
-                      >
+                      <Link href={`detail/${data.id}`}>
                         <div className={`m-auto me-5 `}>
                           <button className={` ${style.btn_seeProfile}`}>
                             Lihat Profile
@@ -267,16 +230,12 @@ const Detail = ({ data }) => {
                       </Link>
                     </div>
                   );
-                  // }
                 })
               ) : (
                 <>
                   {currentPosts?.map((data, index) => {
-                    console.log(data.image);
-                    // if (data?.skill) {
                     return (
                       <div className={style.card} key={index}>
-                        {/* <Link href={data.fullname}> */}
                         <div className={style.profile}>
                           <Image
                             src={
@@ -290,21 +249,15 @@ const Detail = ({ data }) => {
                             className={style.profile_img}
                           />
                         </div>
-                        {/* </Link> */}
-
                         <div className={style.profiledetail}>
-                          {/* <Link href={data.name}> */}
                           <p
                             className="font-weight-bold "
                             style={{ fontSize: "20px", cursor: "pointer" }}
                           >
                             {data.fullname}
                           </p>
-                          {/* </Link> */}
                           <p className="text-muted">
-                          {
-                          data.jobs ? data.jobs : 'Unknown'
-                        }
+                            {data.jobs ? data.jobs : "Unknown"}
                           </p>
                           <p className="text-muted d-flex ">
                             <Image src={Maps} alt="location" />
@@ -322,10 +275,7 @@ const Detail = ({ data }) => {
                             })}
                           </div>
                         </div>
-                        <Link
-                          href={ `detail/${data.id}`
-                          }
-                        >
+                        <Link href={`detail/${data.id}`}>
                           <div className={`m-auto me-5 `}>
                             <button className={` ${style.btn_seeProfile}`}>
                               Lihat Profile
@@ -334,7 +284,6 @@ const Detail = ({ data }) => {
                         </Link>
                       </div>
                     );
-                    // }
                   })}
                 </>
               )}
